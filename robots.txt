@@ -3,4 +3,4 @@ Disallow: /javascripts/
 Disallow: /resources/
 Disallow: /stylesheets/
 
-Sitemap: /blog/sitemap.txt
+Sitemap: /blog/Sitemap.xml
