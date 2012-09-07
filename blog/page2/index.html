@@ -11,13 +11,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20120908035245" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20120908035245" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20120908040318" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20120908040318" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20120908035245" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20120908035245" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20120908035245" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20120908040318" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20120908040318" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20120908040318" type="text/javascript" charset="utf-8"></script>
 	
 </head>
 
@@ -74,23 +74,41 @@
 <ol>
 <li><p><code>lsof</code></p>
 
-<blockquote><p>列出当前用户所打开的文件以及打开这些文件对应的进程等，当 OS X 提示 "The item can't be xxx because it's xxx" 时可使用该命令查看使用该文件的进程并 kill 掉。</p></blockquote></li>
+<ul>
+<li>列出当前用户所打开的文件以及打开这些文件对应的进程等，当 OS X 提示 "The item can't be xxx because it's xxx" 时可使用该命令查看使用该文件的进程并 kill 掉。</li>
+</ul>
+</li>
 <li><p><code>open</code></p>
 
-<blockquote><p>该命令几乎可以打开一切我们所能想到的东西，文件/文件夹，网址 (<code>open http://elilien.com</code>)，远程屏幕共享 (<code>open vnc://1.2.3.4</code>)，甚至查找单词 (<code>open dict://apple</code>)。</p></blockquote></li>
+<ul>
+<li>该命令几乎可以打开一切我们所能想到的东西，文件/文件夹，网址 (<code>open http://elilien.com</code>)，远程屏幕共享 (<code>open vnc://1.2.3.4</code>)，甚至查找单词 (<code>open dict://apple</code>)。</li>
+</ul>
+</li>
 <li><p><code>pbcopy</code> 与 <code>pbpaste</code></p>
 
-<blockquote><p>这两个命令能在 Terminal 与 OS X Clipboard 之间复制/粘贴数据，使用 <code>lsof | pbcopy</code> 可以将 lsof 当前内容复制到 OS X Clipboard 中，在需要之处用 ⌘+V 粘贴。</p></blockquote></li>
+<ul>
+<li>这两个命令能在 Terminal 与 OS X Clipboard 之间复制/粘贴数据，使用 <code>lsof | pbcopy</code> 可以将 lsof 当前内容复制到 OS X Clipboard 中，在需要之处用 ⌘+V 粘贴。</li>
+</ul>
+</li>
 <li><p><code>rm</code></p>
 
-<blockquote><p>删除命令。可以在一瞬间批量删除多个文件/文件夹，名称支持通配符 "*"，慎用。<code>rm -i</code> 可在删除文件/文件夹前询问用户。查看更多用法 <code>man rm</code>。</p></blockquote></li>
+<ul>
+<li>删除命令。可以在一瞬间批量删除多个文件/文件夹，名称支持通配符 "*"，慎用。<code>rm -i</code> 可在删除文件/文件夹前询问用户。查看更多用法 <code>man rm</code>。</li>
+</ul>
+</li>
 <li><p><code>killall appname</code> / <code>kill PID</code></p>
 
-<blockquote><p>强制退出应用/进程 (当应用无响应的时候)。</p></blockquote></li>
+<ul>
+<li>强制退出应用/进程 (当应用无响应的时候)。</li>
+</ul>
+</li>
 <li><p><code>sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Your Text"</code></p>
 
-<blockquote><p>定制登录界面的提示，可以试试这个    <br/>
-<code>loginText="iSight image capture at login activen"`date "+on %m/%d/%Y at %H:%M:%S"`</code></p></blockquote></li>
+<ul>
+<li>定制登录界面的提示，可以试试这个    <br/>
+<code>loginText="iSight image capture at login activen"`date "+on %m/%d/%Y at %H:%M:%S"`</code></li>
+</ul>
+</li>
 <li><p>FORCE EMPTY THE TRASH</p>
 
 <ul>

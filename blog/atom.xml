@@ -4,7 +4,7 @@
 	<title>elilien / blog</title>
 	<link href="http://elilien.com/blog/atom.xml" rel="self" />
 	<link href="http://elilien.com/blog/" />
-	<updated>2012-09-08T03:52:45+08:00</updated>
+	<updated>2012-09-08T04:03:18+08:00</updated>
 	<id>http://elilien.com/blog/</id>
 	<author>
 		<name>Eli Lien</name>
@@ -197,23 +197,41 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;列出当前用户所打开的文件以及打开这些文件对应的进程等，当 OS X 提示 &quot;The item can't be xxx because it's xxx&quot; 时可使用该命令查看使用该文件的进程并 kill 掉。&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;列出当前用户所打开的文件以及打开这些文件对应的进程等，当 OS X 提示 &quot;The item can't be xxx because it's xxx&quot; 时可使用该命令查看使用该文件的进程并 kill 掉。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;open&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;该命令几乎可以打开一切我们所能想到的东西，文件/文件夹，网址 (&lt;code&gt;open http://elilien.com&lt;/code&gt;)，远程屏幕共享 (&lt;code&gt;open vnc://1.2.3.4&lt;/code&gt;)，甚至查找单词 (&lt;code&gt;open dict://apple&lt;/code&gt;)。&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;该命令几乎可以打开一切我们所能想到的东西，文件/文件夹，网址 (&lt;code&gt;open http://elilien.com&lt;/code&gt;)，远程屏幕共享 (&lt;code&gt;open vnc://1.2.3.4&lt;/code&gt;)，甚至查找单词 (&lt;code&gt;open dict://apple&lt;/code&gt;)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;pbcopy&lt;/code&gt; 与 &lt;code&gt;pbpaste&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;这两个命令能在 Terminal 与 OS X Clipboard 之间复制/粘贴数据，使用 &lt;code&gt;lsof | pbcopy&lt;/code&gt; 可以将 lsof 当前内容复制到 OS X Clipboard 中，在需要之处用 ⌘+V 粘贴。&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;这两个命令能在 Terminal 与 OS X Clipboard 之间复制/粘贴数据，使用 &lt;code&gt;lsof | pbcopy&lt;/code&gt; 可以将 lsof 当前内容复制到 OS X Clipboard 中，在需要之处用 ⌘+V 粘贴。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;rm&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;删除命令。可以在一瞬间批量删除多个文件/文件夹，名称支持通配符 &quot;*&quot;，慎用。&lt;code&gt;rm -i&lt;/code&gt; 可在删除文件/文件夹前询问用户。查看更多用法 &lt;code&gt;man rm&lt;/code&gt;。&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;删除命令。可以在一瞬间批量删除多个文件/文件夹，名称支持通配符 &quot;*&quot;，慎用。&lt;code&gt;rm -i&lt;/code&gt; 可在删除文件/文件夹前询问用户。查看更多用法 &lt;code&gt;man rm&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;killall appname&lt;/code&gt; / &lt;code&gt;kill PID&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;强制退出应用/进程 (当应用无响应的时候)。&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;强制退出应用/进程 (当应用无响应的时候)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText &quot;Your Text&quot;&lt;/code&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;定制登录界面的提示，可以试试这个    &lt;br/&gt;
-&lt;code&gt;loginText=&quot;iSight image capture at login activen&quot;`date &quot;+on %m/%d/%Y at %H:%M:%S&quot;`&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;定制登录界面的提示，可以试试这个    &lt;br/&gt;
+&lt;code&gt;loginText=&quot;iSight image capture at login activen&quot;`date &quot;+on %m/%d/%Y at %H:%M:%S&quot;`&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;FORCE EMPTY THE TRASH&lt;/p&gt;
 
 &lt;ul&gt;
