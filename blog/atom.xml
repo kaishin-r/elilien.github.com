@@ -4,7 +4,7 @@
 	<title>elilien / blog</title>
 	<link href="http://elilien.com/blog/atom.xml" rel="self" />
 	<link href="http://elilien.com/blog/" />
-	<updated>2012-09-07T00:34:18+08:00</updated>
+	<updated>2012-09-07T21:38:41+08:00</updated>
 	<id>http://elilien.com/blog/</id>
 	<author>
 		<name>Eli Lien</name>
@@ -122,10 +122,9 @@
 &lt;ul&gt;
 &lt;li&gt;Mac OS X 用户: 在 Terminal 中 cd 进入 server 目录 &lt;code&gt;uploaddir=python python uploader.zip&lt;/code&gt; (若出现502错误重复该步骤，多个 app_id 依次填写 &quot;APPID&quot; 分别上传。)&lt;/li&gt;
 &lt;li&gt;Windows 用户: 修改 server\golang\app.yaml 中 applicaion 值为 app_id，先运行 local\proxy.exe，然后双击 server\uploader.bat，根据提示信息输入相应 application, email 及 password&lt;/li&gt;
+&lt;li&gt;上传成功后代理的地址为 127.0.0.1:8087&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;blockquote&gt;&lt;p&gt;上传成功后代理的地址为 127.0.0.1:8087&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Mac OS X 用户需在 GoAgent.app -&gt; 右键 -&gt; Show Package Contents，编辑 Contents/Info.plist 将 GoAgentPath 值修改为 &lt;code&gt;/Applications/GoAgent/local/proxy.py&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;运行&lt;/p&gt;
 
