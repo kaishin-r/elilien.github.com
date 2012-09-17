@@ -4,7 +4,7 @@
 	<title>elilien / blog</title>
 	<link href="http://elilien.com/blog/atom.xml" rel="self" />
 	<link href="http://elilien.com/blog/" />
-	<updated>2012-09-17T23:06:07+08:00</updated>
+	<updated>2012-09-17T23:15:10+08:00</updated>
 	<id>http://elilien.com/blog/</id>
 	<author>
 		<name>Eli Lien</name>
@@ -42,7 +42,7 @@
 
 &lt;p&gt;接下来配置 Ruby，用原来的方法&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;rvm install 1.9.3
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm install 1.9.3
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -99,7 +99,7 @@ Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;s
 
 &lt;p&gt;根据提示，首先安装 homebrew&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ruby &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -fsSkL raw.github.com/mxcl/homebrew/go&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -fsSkL raw.github.com/mxcl/homebrew/go&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
