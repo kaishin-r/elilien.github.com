@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20120908053444" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20120908053444" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20120917230607" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20120917230607" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20120908053444" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20120908053444" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20120908053444" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20120917230607" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20120917230607" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20120917230607" type="text/javascript" charset="utf-8"></script>
 	
 </head>
 
@@ -57,6 +57,173 @@
 	
 	<div class="post-world">
 		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>17</i><b>Sep</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/configure-my-ruby-development-environment/">Configure My Ruby Development Environment</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/ruby/" rel="tag"><i class="hash">#</i>ruby</a>, <a href="/blog/tag/development/" rel="tag"><i class="hash">#</i>development</a>, <a href="/blog/tag/environment/" rel="tag"><i class="hash">#</i>environment</a>, <a href="/blog/tag/os x/" rel="tag"><i class="hash">#</i>os x</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>全新安装了 OS X Mountain Lion，这次在配置 Ruby 的时候发现跟 Mac OS X Lion 的步骤不一样了，在此做一个记录。</p>
+
+<p>首先老方法安装 RVM</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>curl -L get.rvm.io | bash -s stable
+</code></pre>
+</div>
+
+
+<p>或者</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="o">)</span>
+</code></pre>
+</div>
+
+
+<p>重新打开 Terminal</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>which rvm
+</code></pre>
+</div>
+
+
+<p>接下来配置 Ruby，用原来的方法</p>
+
+<div class="highlight"><pre><code class="bash">rvm install 1.9.3
+</code></pre>
+</div>
+
+
+<p>会有以下提示</p>
+
+<div class="highlight"><pre><code class="bash">For JRuby:  Install the JDK. See http://developer.apple.com/java/download/  <span class="c"># Current Java version &quot;1.6.0_26&quot;  </span>
+For IronRuby: Install Mono &gt;<span class="o">=</span> 2.6  
+For Ruby 1.9.3: Install libksba <span class="c"># If using Homebrew, &#39;brew install libksba&#39;</span>
+  
+To use an RVM installed Ruby as default, instead of the system ruby:  
+  
+    rvm install 1.8.7 <span class="c"># installs patch 357: closest supported version  </span>
+    rvm system ; rvm gemset <span class="nb">export </span>system.gems ; rvm 1.8.7 ; rvm gemset import system.gems <span class="c"># migrate your gems  </span>
+    rvm <span class="nb">alias </span>create default 1.8.7  
+  
+And reopen your terminal windows.  
+  
+Xcode and gcc:  
+  
+Right now Ruby requires gcc to compile, but Xcode 4.2 and later no longer ship with gcc. Instead they ship with llvm-gcc <span class="o">(</span>to which gcc is a symlink<span class="o">)</span> and clang, neither of which are supported <span class="k">for </span>building Ruby. Xcode 4.1 was the last version to ship gcc, which was /usr/bin/gcc-4.2.  
+  
+Xcode 4.1 and earlier:   
+- Ruby will build fine.  
+  
+Xcode 4.2 and later <span class="o">(</span>including Command Line Tools <span class="k">for </span>Xcode<span class="o">)</span>:  
+- If you have gcc-4.2 <span class="o">(</span>and friends<span class="o">)</span> from an earlier Xcode version, Ruby will build fine.
+- If you don<span class="se">\’</span>t have gcc-4.2, you have two options to get it:  
+ * Install apple-gcc42 from Homebrew
+ * Install osx-gcc-installer
+  
+  Homebrew:  
+  
+  If you are using Homebrew, you can install the apple-gcc42 and required libraries from homebrew/dupes:  
+      brew update  
+      brew tap homebrew/dupes  
+      brew install autoconf automake apple-gcc42
+      rvm pkg install openssl  
+  
+  This can live side by side with an existing Xcode 4.2+ install or Command Line Tools <span class="k">for </span>Xcode.  
+  
+  osx-gcc-installer:  
+  
+  If you don<span class="se">\’</span>t use Homebrew, you can download and install osx-gcc-installer: https://github.com/kennethreitz/osx-gcc-installer.  
+  
+  Warning: Installing osx-gcc-installer on top of a recent Xcode is known to cause problems, so you must uninstall Xcode before installing osx-gcc-installer. Afterwards you may install Xcode 4.2+ or Command Line Tools <span class="k">for </span>Xcode <span class="k">if </span>you desire.  
+  
+  ** NOTE: Currently, Node.js is having issues building with osx-gcc-installer. The only fix is to install Xcode over osx-gcc-installer.  
+  
+Press <span class="s1">&#39;q&#39;</span> to <span class="k">continue</span>.
+</code></pre>
+</div>
+
+
+<p>根据提示，首先安装 homebrew</p>
+
+<div class="highlight"><pre><code class="bash">ruby &lt;<span class="o">(</span>curl -fsSkL raw.github.com/mxcl/homebrew/go<span class="o">)</span>
+</code></pre>
+</div>
+
+
+<p>然后执行以下安装</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>brew install libksba
+<span class="nv">$ </span>brew update
+<span class="nv">$ </span>brew tap homebrew/dupes
+<span class="nv">$ </span>brew install autoconf automake apple-gcc42
+<span class="nv">$ </span>rvm pkg install openssl
+</code></pre>
+</div>
+
+
+<p>由于万恶的校园网，libksba 老是找不到 host，果断跳过。</p>
+
+<p>现在，就可以正常用 RVM 安装 Ruby 了</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rvm install 1.9.3
+<span class="nv">$ </span>rvm use 1.9.3
+<span class="nv">$ </span>rvm --default 1.9.3
+</code></pre>
+</div>
+
+
+
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/configure-my-ruby-development-environment//#disqus_thread">Comments</a>
+	</p>
+</div>
+
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>16</i><b>Sep</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms/">说说Google Calendar</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/google calendar/" rel="tag"><i class="hash">#</i>google calendar</a>, <a href="/blog/tag/curriculum/" rel="tag"><i class="hash">#</i>curriculum</a>, <a href="/blog/tag/ical/" rel="tag"><i class="hash">#</i>ical</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>开学两周了，课表还没打印，正愁着什么时候去打印课程表，Google Calendar 这货突然在我脑子里面闪过，对啊！我为毛不把课程表弄到 Google Calendar 里面呢！
+上教学管理部网站查到自己的课程表，虽然有点参差不齐，但是我有 Calendar 这等神器啊！</p>
+
+<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7991785467/" title="Screen Shot 2012-09-16 at 8.41.50 PM by im.elilien, on Flickr"><img src="http://farm9.staticflickr.com/8173/7991785467_fcac70eebc_z.jpg" width="640" height="418" alt="Screen Shot 2012-09-16 at 8.41.50 PM"></a></div>
+
+
+<p>首先把每一项课程记录在某一周内，然后按住 option 键拖动就能复制该课程到任意一天，这步搞定了直接 File->Export->Export，得到 ics 文件，再进入 Google Calendar 导入就能得到一个课程表的日历，之后还可以建立其他的日历，比如 Activities，这样就方便将不同的行程与不同的人共享，Curriculum 可以与同班同学共享，Activities 可以与好友共享，设置->移动设置，验证自己的手机号码，就能设定比如行程的30分钟前来短信通知，而且，这个碉堡的功能是免费的！</p>
+
+<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7991636717/" title="Screen Shot 2012-09-16 at 8.22.30 PM by im.elilien, on Flickr"><img src="http://farm9.staticflickr.com/8459/7991636717_275e81d07c_z.jpg" width="640" height="387" alt="Screen Shot 2012-09-16 at 8.22.30 PM"></a></div>
+
+
+<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7991635853/" title="Screen Shot 2012-09-16 at 8.22.12 PM by im.elilien, on Flickr"><img src="http://farm9.staticflickr.com/8029/7991635853_f3a9c5b5af_z.jpg" width="640" height="387" alt="Screen Shot 2012-09-16 at 8.22.12 PM"></a></div>
+
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	<div class="post-item">
 	<div class="post-meta">
 	    <p class="date"><i>01</i><b>Sep</b></p>
@@ -151,143 +318,6 @@
 	</p>
 </div>
 
-	<div class="post-item">
-	<div class="post-meta">
-	    <p class="date"><i>28</i><b>Aug</b></p>
-	</div>
-
-	<h1 class="post-title">
-		<a href="/blog/2012/flickr-pro-account/">买了个Flickr Pro</a>
-		<div class="post-title-sub">
-			by Eli Lien – tags:
-			 <a href="/blog/tag/flickr/" rel="tag"><i class="hash">#</i>flickr</a>, <a href="/blog/tag/photos/" rel="tag"><i class="hash">#</i>photos</a>
-		</div>
-	</h1>
-
-	<div class="post-content">
-		<p>前一天晚上在整理着最近的照片时，鬼使神差就想到了 Flickr 这个神一般的服务，于是乎在用着免费帐户的情况下各种上传照片，挂了一个晚上，第二天早上起来看电脑，发现 Photostream 里面只保留了最新200张照片，我知道，这一次，我真心淡腾了。</p>
-
-<p>昨儿晚上刚回到家就跟抽风似的买了个 Flickr Pro Update，也许是受那个200张的诟病，不管了，今晚继续通宵上传，嗯，我就是个淡腾的主还不允许自己淡腾。</p>
-
-<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7874663036/" title="Screen Shot 2012-08-28 at 2.23.38 AM by im.elilien, on Flickr"><img src="http://farm8.staticflickr.com/7277/7874663036_46af52707d_z.jpg" width="640" height="381" alt="Screen Shot 2012-08-28 at 2.23.38 AM"></a></div>
-
-
-<br>
-
-
-<p>Welcome! <a href="http://www.flickr.com/photos/eli-lien/">http://www.flickr.com/photos/eli-lien/</a></p>
-
-	</div>
-	
-	<p class="post-comment-link">
-		<a href="/blog/2012/flickr-pro-account//#disqus_thread">Comments</a>
-	</p>
-</div>
-
-	<div class="post-item">
-	<div class="post-meta">
-	    <p class="date"><i>06</i><b>Aug</b></p>
-	</div>
-
-	<h1 class="post-title">
-		<a href="/blog/2012/goagent-on-gae-remastered/">在GAE上部署GoAgent</a>
-		<div class="post-title-sub">
-			by Eli Lien – tags:
-			 <a href="/blog/tag/goagent/" rel="tag"><i class="hash">#</i>goagent</a>
-		</div>
-	</h1>
-
-	<div class="post-content">
-		<p>声明一下，这篇文章于 Apr. 24, 2012 发表在我原来的 Wordpress 博客中，由于迁移到新的平台，而且原来的排版也很糟糕，所以 remaster 了现在的这个版本。</p>
-
-<h3>前言</h3>
-
-<p>GAE 是由 Google 提供的一个云计算平台，用户可以免费或付费在上面部署自己的应用。</p>
-
-<p>GoAgent 是使用 Python 和 Google App Engine SDK 编写的网络软件，可以运行在 Windows / Mac OS X / Linux / <a href="https://code.google.com/p/gaeproxy">Android</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_IOS">iPod Touch</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_IOS">iPhone</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_IOS">iPad</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_webOS">webOS</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_OpenWRT">OpenWRT</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_Maemo">Maemo</a> 上。</p>
-
-<h3>正文</h3>
-
-<ol>
-<li><p>登录 <a href="https://appengine.google.com/">GAE</a>，没有 Google 帐户请<a href="https://accounts.google.com/SignUp">猛击</a>。</p></li>
-<li><p>Create Application，"Application Identifier" 处填写 app_id，Application Title 处随意。</p></li>
-<li><p>在 <a href="https://code.google.com/p/goagent/">GoAgent Project</a> 主页下载对应包包并 unzip 得到 goagent 文件夹。</p></li>
-<li><p>修改 local/proxy.ini 中 [gae] 下 "appid=" 值为第二步中创建的 app_id，多个 app_id 间用 "|" 隔开。</p></li>
-<li><p>上传</p>
-
-<ul>
-<li>Mac OS X 用户: 在 Terminal 中 cd 进入 server 目录 <code>uploaddir=python python uploader.zip</code> (若出现502错误重复该步骤，多个 app_id 依次填写 "APPID" 分别上传。)</li>
-<li>Windows 用户: 修改 server\golang\app.yaml 中 applicaion 值为 app_id，先运行 local\proxy.exe，然后双击 server\uploader.bat，根据提示信息输入相应 application, email 及 password</li>
-<li>上传成功后代理的地址为 127.0.0.1:8087</li>
-</ul>
-</li>
-<li><p>Mac OS X 用户需在 GoAgent.app -> 右键 -> Show Package Contents，编辑 Contents/Info.plist 将 GoAgentPath 值修改为 <code>/Applications/GoAgent/local/proxy.py</code></p></li>
-<li><p>运行</p>
-
-<ul>
-<li>Mac OS X 用户运行 GoAgent.app</li>
-<li>Windows 用户以管理员身份运行 goagent.exe (双击 addto-startup.vbs 实现开机自启动)</li>
-</ul>
-</li>
-<li><p>到 Chrome Web Store 下载 <a href="https://chrome.google.com/webstore/detail/dpplabbmogkhghncfbfdeeokoefdjegm">SwitchySharp</a>，SwitchySharp Options -> Import/Export，"Restore from Online" 处填写 <a href="http://goagent.googlecode.com/files/SwitchyOptions.bak">http://goagent.googlecode.com/files/SwitchyOptions.bak</a>，Restore from Online 后切换到 "Switch Rules" 点击右下方 "Update List Now"，提示 "Rule list update successfully" 即成功。(FireFox 用户可使用 <a href="https://addons.mozilla.org/zh-cn/firefox/addon/autoproxy/">AutoProxy</a>，原理相同。)</p></li>
-<li><p>解决证书问题</p>
-
-<ul>
-<li>Mac OS X:
-
-<ul>
-<li>打开 Keychain Access -> Login -> Certificates，找到 "GoAgent CA" 并删除</li>
-<li>打开 /Applications/GoAgent/local 找到 "CA.crt" 双击导入并选择 "Always Trust"</li>
-<li>在 Keychain Access -> Login -> Certificates 找到 "GoAgent CA" 右键 -> Get Info，展开 Trust 栏并将 "When using this certificate" 改为 "Always Trust"。</li>
-</ul>
-</li>
-<li>Windows 原理相同未试验。</li>
-</ul>
-</li>
-<li><p>在 Mac OS X 下配置全局自动代理</p>
-
-<ul>
-<li>Chrome -> SwithySharp Options -> Import/Export -> Export PAC Fi​​le</li>
-<li>将导出的 SwichyPac.pac 移动到 ~/Library/Internet Plug-Ins 目录下</li>
-<li>打开网络设置 (System Preferences -> Network) Advanced -> Proxies -> Automatic Proxy Configuration，勾选之并在右边选择上一步导出的 SwichyPac.pac 路径，保存即可。(SwichyPac.pac 必须放在 ~/Library/Internet Plug-Ins 目录下，否则由于 sandbox 的原因 Safari 不能识别 PAC 规则。该方法在 Mac OS X 10.7 及之前版本的系统中有效，自 OS X 10.8 开始 Safari 已无法正常被代理，目前问题正在解决中。)</li>
-</ul>
-</li>
-</ol>
-
-
-<h3>常见问题</h3>
-
-<ul>
-<li>Google Reader 错误404: 使用 <a href="https://www.google.com/reader">https://www.google.com/reader/</a> 访问。</li>
-<li>Google Plus 不能看内嵌视频: 将 "*://*.ytimg.com/*" 加入 Rules。</li>
-<li>Youtube 不能上传及观看直播: 配置 [crlf]enable=0。</li>
-<li>提示 Error code 502:
-
-<ul>
-<li>401: Unauthorized 一般是处于内网环境中，需设置 proxy.ini 内 proxy 段落。</li>
-<li>404: Not Found 一般是 proxy.ini 内 app_id 未填对，或者服务端未部署成功。</li>
-<li>503: Service Unavailable 一般是流量用完，需更换 app_id。</li>
-</ul>
-</li>
-<li>uploader 上传失败:
-
-<ul>
-<li>400: Bad Request 到 http://appengine.google.com 新建一个 app_id 再上传。</li>
-<li>404: Not Found 对应 app_id 未创建。</li>
-<li>10060 连接服务器超时，挂 VPN 上传。</li>
-<li>10054 连接被重置，挂 VPN 上传。</li>
-</ul>
-</li>
-</ul>
-
-
-	</div>
-	
-	<p class="post-comment-link">
-		<a href="/blog/2012/goagent-on-gae-remastered//#disqus_thread">Comments</a>
-	</p>
-</div>
-
 	</div>
 	
 	<div class="sidebar">
@@ -325,6 +355,12 @@
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>17 Sep</dt>
+				<dd><a href="/blog/2012/configure-my-ruby-development-environment/" class="title">Configure My Ruby Development Environment</a></dd>
+			
+				<dt>16 Sep</dt>
+				<dd><a href="/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms/" class="title">说说Google Calendar</a></dd>
+			
 				<dt>01 Sep</dt>
 				<dd><a href="/blog/2012/leaving-for-dalian/" class="title">再见</a></dd>
 			
@@ -342,12 +378,6 @@
 			
 				<dt>30 Jul</dt>
 				<dd><a href="/blog/2012/hello-world-hello-jekyll/" class="title">Hello World, Hello Jekyll!</a></dd>
-			
-				<dt>25 Jun</dt>
-				<dd><a href="/blog/2012/change-mac-address-in-mac-os-x/" class="title">在Mac OS X中修改MAC地址</a></dd>
-			
-				<dt>06 Jun</dt>
-				<dd><a href="/blog/2012/bitwise-shift-operators-in-java/" class="title">Java中的移位运算符</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

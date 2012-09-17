@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20120908053444" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20120908053444" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20120917230607" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20120917230607" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20120908053444" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20120908053444" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20120908053444" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20120917230607" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20120917230607" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20120917230607" type="text/javascript" charset="utf-8"></script>
 	
 </head>
 
@@ -57,6 +57,168 @@
 	
 	<div class="post-world">
 		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>25</i><b>Jun</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/change-mac-address-in-mac-os-x/">在Mac OS X中修改MAC地址</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/mac/" rel="tag"><i class="hash">#</i>mac</a>, <a href="/blog/tag/mac address/" rel="tag"><i class="hash">#</i>mac address</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>MAC (Medium/Media Access Control) 地址，或称为 MAC 位址、硬件地址，用来定义网络设备的位置，由48比特长，12位的16进制数字组成，0到23位是厂商向 IETF 等机构申请用来标识厂商的代码，也称为“编制上唯一的标识符” (Organizationally Unique Identifier)。是识别 LAN (局域网) 结点的标志。地址的24到47位由厂商自行分派，是各个厂商制造的所有网卡的一个唯一编号。在 OSI 模型中，第三层网络层负责 IP 地址，第二层数据链路层则负责 MAC 位址。因此一个网卡会有一个全球唯一固定的 MAC 地址，但可对应多个IP地址。第40位是组播地址标志位。</p>
+
+<p>在我朝很多大学的校园网都是 IP 地址与 MAC 地址绑定的，路由器从外面收到发给子网的包时，直接用其事先存储的 ARP 表查出对应 MAC 地址而以这个 MAC 地址为目的 MAC 地址在子网内发包 , 这样没有注册的网卡就收不到外面来的包.  但这种方法有缺陷，就是对发出的包不检查，即使网卡 MAC 是未登记的， 也可以向外发数据包，而且可以用伪造的 IP， 当然有的路由器检查源 IP 的范围， 这时候伪造的 IP 也必须属于子网内的 IP。从根本上说，采用 IP-MAC 来防止 IP 盗用是不行的，所有的网卡 MAC 都可以修改，而且重点是网卡发出的包的源 MAC 地址并不是网卡本身写上去的， 而是应用程序提供的，只是在通常的实现中，应用程序先从网卡上得到了 MAC 地址，每次发送包的时候用这个 MAC 地址作为源 MAC 地址而已，所以我们仅仅靠修改网络的驱动程序就可以改变 MAC 地址。由于种种原因，像我，需要经常更换本本的工作地点，修改 MAC 地址就成了家常便饭，下面利用如上原理，说说修改的办法。</p>
+
+<p>首先在 Terminal 中查看当前网卡信息：</p>
+
+<div class="highlight"><pre><code class="bash">ifconfig
+</code></pre>
+</div>
+
+
+<p>其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：</p>
+
+<div class="highlight"><pre><code class="bash">sudo ifconfig en0 ether aa:bb:cc:dd:ee:ff
+</code></pre>
+</div>
+
+
+<p><em>aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。</em></p>
+
+<p>过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：</p>
+
+<div class="highlight"><pre><code class="bash">ifconfig en0
+</code></pre>
+</div>
+
+
+<p><em>注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。</em></p>
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/change-mac-address-in-mac-os-x//#disqus_thread">Comments</a>
+	</p>
+</div>
+
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>06</i><b>Jun</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/bitwise-shift-operators-in-java/">Java中的移位运算符</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/java/" rel="tag"><i class="hash">#</i>java</a>, <a href="/blog/tag/bitwise shift operators/" rel="tag"><i class="hash">#</i>bitwise shift operators</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>移位运算符面向的运算对象即是二进制中的“位”，主要包含：左移位运算符 (&lt;&lt;)，右移位运算符 (&gt;&gt;&gt;)，以及带符号的右移位运算符 (&gt;&gt;)。</p>
+
+<h3>左移位运算符 (&lt;&lt;)</h3>
+
+<p>左移位运算符是将运算符左边的对象向左移动运算符右边所指定的位数，并在低位补0。即向左移了 n 位，相当于乘以2的 n 次幂。例如：</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LeftBitwiseShiftOperator</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * @param args</span>
+<span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result = &quot;</span><span class="o">+(</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>运行结果：</p>
+
+<div class="highlight"><pre><code class="java"><span class="n">result</span> <span class="o">=</span> <span class="mi">8</span>
+</code></pre>
+</div>
+
+
+<p><em>以二进制表示十进制的2为 00000010，向左移动2位，就变成了 00001000，即十进制的8。也就相当于 2 * 2<sup>2</sup> = 8。</em></p>
+
+<h3>右移位运算符 (&gt;&gt;&gt;)</h3>
+
+<p>右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，并在高位补0。即向右移了 n 位，相当于乘以2的 -n 次幂。例如：</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightBitwiseShiftOperator</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * @param args</span>
+<span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result = &quot;</span><span class="o">+(</span><span class="n">m</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>运行结果：</p>
+
+<div class="highlight"><pre><code class="java"><span class="n">result</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre>
+</div>
+
+
+<p><em>以二进制表示十进制的8为 00001000，向右移动2位，就变成了 00000010，即十进制的2。也就相当于 8 *  2<sup>(-2)</sup> = 2。</em></p>
+
+<h3>带符号的右移位运算符 (&gt;&gt;)</h3>
+
+<p>带符号的右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，若左边的对象为正数，则在其高位补0，若左边的对象为负数，则在其高位补1。例如：</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightBitwiseShiftOperatorWithSymbol</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * @param args</span>
+<span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result1 = &quot;</span><span class="o">+(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result2 = &quot;</span><span class="o">+(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>运行结果：</p>
+
+<div class="highlight"><pre><code class="java"><span class="n">result1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+</code></pre>
+</div>
+
+
+<p><em>x 的值为8，转换成二进制为 00001000，右移两位并在高位补0为 00000010，即是2。</em></p>
+
+<p><em>y 的值为-8，转换成二进制为 11110111，右移两位并在高位补1为 11111101，即是-2。</em></p>
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/bitwise-shift-operators-in-java//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	<div class="post-item">
 	<div class="post-meta">
 	    <p class="date"><i>02</i><b>Nov</b></p>
@@ -204,6 +366,12 @@ sudo kextcache -system-caches
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>17 Sep</dt>
+				<dd><a href="/blog/2012/configure-my-ruby-development-environment/" class="title">Configure My Ruby Development Environment</a></dd>
+			
+				<dt>16 Sep</dt>
+				<dd><a href="/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms/" class="title">说说Google Calendar</a></dd>
+			
 				<dt>01 Sep</dt>
 				<dd><a href="/blog/2012/leaving-for-dalian/" class="title">再见</a></dd>
 			
@@ -221,12 +389,6 @@ sudo kextcache -system-caches
 			
 				<dt>30 Jul</dt>
 				<dd><a href="/blog/2012/hello-world-hello-jekyll/" class="title">Hello World, Hello Jekyll!</a></dd>
-			
-				<dt>25 Jun</dt>
-				<dd><a href="/blog/2012/change-mac-address-in-mac-os-x/" class="title">在Mac OS X中修改MAC地址</a></dd>
-			
-				<dt>06 Jun</dt>
-				<dd><a href="/blog/2012/bitwise-shift-operators-in-java/" class="title">Java中的移位运算符</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

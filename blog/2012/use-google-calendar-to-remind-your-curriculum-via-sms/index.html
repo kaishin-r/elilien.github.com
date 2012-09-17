@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>Special use of Terminal</title>
+	<title>说说Google Calendar</title>
 	<meta name="author" content="Eli Lien" />
 	
-	<meta name="description" content="Special use of Terminal in Mac OS X" />
+	<meta name="description" content="Use Google Calendar to remind your Curriculum via sms" />
 	
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
@@ -58,66 +58,30 @@
 	<div class="post-world">
 		<div class="post-item">
 			<div class="post-meta">
-			    <p class="date"><i>02</i><b>Aug</b></p>
+			    <p class="date"><i>16</i><b>Sep</b></p>
 			</div>
 
 			<h1 class="post-title">
-				Special use of Terminal
+				说说Google Calendar
 				<div class="post-title-sub">
 					by Eli Lien – tags:
-					 <a href="/blog/tag/terminal/" rel="tag"><i class="hash">#</i>terminal</a>, <a href="/blog/tag/mac/" rel="tag"><i class="hash">#</i>mac</a>, <a href="/blog/tag/tips/" rel="tag"><i class="hash">#</i>tips</a>
+					 <a href="/blog/tag/google calendar/" rel="tag"><i class="hash">#</i>google calendar</a>, <a href="/blog/tag/curriculum/" rel="tag"><i class="hash">#</i>curriculum</a>, <a href="/blog/tag/ical/" rel="tag"><i class="hash">#</i>ical</a>
 				</div>
 			</h1>
 
 			<div class="post-content">
-				<p>用 Terminal 可以简单地完成很多事情，在我看来，比 OS X GUI 还要来的方便。</p>
+				<p>开学两周了，课表还没打印，正愁着什么时候去打印课程表，Google Calendar 这货突然在我脑子里面闪过，对啊！我为毛不把课程表弄到 Google Calendar 里面呢！
+上教学管理部网站查到自己的课程表，虽然有点参差不齐，但是我有 Calendar 这等神器啊！</p>
 
-<ol>
-<li><p><code>lsof</code></p>
+<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7991785467/" title="Screen Shot 2012-09-16 at 8.41.50 PM by im.elilien, on Flickr"><img src="http://farm9.staticflickr.com/8173/7991785467_fcac70eebc_z.jpg" width="640" height="418" alt="Screen Shot 2012-09-16 at 8.41.50 PM"></a></div>
 
-<ul>
-<li>列出当前用户所打开的文件以及打开这些文件对应的进程等，当 OS X 提示 "The item can't be xxx because it's xxx" 时可使用该命令查看使用该文件的进程并 kill 掉。</li>
-</ul>
-</li>
-<li><p><code>open</code></p>
 
-<ul>
-<li>该命令几乎可以打开一切我们所能想到的东西，文件/文件夹，网址 (<code>open http://elilien.com</code>)，远程屏幕共享 (<code>open vnc://1.2.3.4</code>)，甚至查找单词 (<code>open dict://apple</code>)。</li>
-</ul>
-</li>
-<li><p><code>pbcopy</code> 与 <code>pbpaste</code></p>
+<p>首先把每一项课程记录在某一周内，然后按住 option 键拖动就能复制该课程到任意一天，这步搞定了直接 File->Export->Export，得到 ics 文件，再进入 Google Calendar 导入就能得到一个课程表的日历，之后还可以建立其他的日历，比如 Activities，这样就方便将不同的行程与不同的人共享，Curriculum 可以与同班同学共享，Activities 可以与好友共享，设置->移动设置，验证自己的手机号码，就能设定比如行程的30分钟前来短信通知，而且，这个碉堡的功能是免费的！</p>
 
-<ul>
-<li>这两个命令能在 Terminal 与 OS X Clipboard 之间复制/粘贴数据，使用 <code>lsof | pbcopy</code> 可以将 lsof 当前内容复制到 OS X Clipboard 中，在需要之处用 ⌘+V 粘贴。</li>
-</ul>
-</li>
-<li><p><code>rm</code></p>
+<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7991636717/" title="Screen Shot 2012-09-16 at 8.22.30 PM by im.elilien, on Flickr"><img src="http://farm9.staticflickr.com/8459/7991636717_275e81d07c_z.jpg" width="640" height="387" alt="Screen Shot 2012-09-16 at 8.22.30 PM"></a></div>
 
-<ul>
-<li>删除命令。可以在一瞬间批量删除多个文件/文件夹，名称支持通配符 "*"，慎用。<code>rm -i</code> 可在删除文件/文件夹前询问用户。查看更多用法 <code>man rm</code>。</li>
-</ul>
-</li>
-<li><p><code>killall appname</code> / <code>kill PID</code></p>
 
-<ul>
-<li>强制退出应用/进程 (当应用无响应的时候)。</li>
-</ul>
-</li>
-<li><p><code>sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Your Text"</code></p>
-
-<ul>
-<li>定制登录界面的提示，可以试试这个    <br/>
-<code>loginText="iSight image capture at login activen"`date "+on %m/%d/%Y at %H:%M:%S"`</code></li>
-</ul>
-</li>
-<li><p>FORCE EMPTY THE TRASH</p>
-
-<ul>
-<li><code>sudo rm -r </code>将 Trash 内所有文件拖拽到 Terminal 窗口然后 return (注意 "-r" 后有一空格)。</li>
-<li><code>sudo rm -rf ~/.Trash/ /.Trashes/ /Volumes//.Trashes/</code></li>
-</ul>
-</li>
-</ol>
+<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7991635853/" title="Screen Shot 2012-09-16 at 8.22.12 PM by im.elilien, on Flickr"><img src="http://farm9.staticflickr.com/8029/7991635853_f3a9c5b5af_z.jpg" width="640" height="387" alt="Screen Shot 2012-09-16 at 8.22.12 PM"></a></div>
 
 
 			</div>

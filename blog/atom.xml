@@ -4,13 +4,152 @@
 	<title>elilien / blog</title>
 	<link href="http://elilien.com/blog/atom.xml" rel="self" />
 	<link href="http://elilien.com/blog/" />
-	<updated>2012-09-08T05:34:44+08:00</updated>
+	<updated>2012-09-17T23:06:07+08:00</updated>
 	<id>http://elilien.com/blog/</id>
 	<author>
 		<name>Eli Lien</name>
 		<email>elilien@me.com</email>
 	</author>
 	
+	
+	<entry>
+		<title>Configure My Ruby Development Environment</title>
+		<link href="http://elilien.com/blog/2012/configure-my-ruby-development-environment/"/>
+		<updated>2012-09-17T00:00:00+08:00</updated>
+		<id>http://elilien.com/blog/2012/configure-my-ruby-development-environment/</id>
+		<content type="html">&lt;p&gt;全新安装了 OS X Mountain Lion，这次在配置 Ruby 的时候发现跟 Mac OS X Lion 的步骤不一样了，在此做一个记录。&lt;/p&gt;
+
+&lt;p&gt;首先老方法安装 RVM&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl -L get.rvm.io | bash -s stable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;重新打开 Terminal&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which rvm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;接下来配置 Ruby，用原来的方法&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;rvm install 1.9.3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;会有以下提示&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;For JRuby:  Install the JDK. See http://developer.apple.com/java/download/  &lt;span class=&quot;c&quot;&gt;# Current Java version &amp;quot;1.6.0_26&amp;quot;  &lt;/span&gt;
+For IronRuby: Install Mono &amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 2.6  
+For Ruby 1.9.3: Install libksba &lt;span class=&quot;c&quot;&gt;# If using Homebrew, &amp;#39;brew install libksba&amp;#39;&lt;/span&gt;
+  
+To use an RVM installed Ruby as default, instead of the system ruby:  
+  
+    rvm install 1.8.7 &lt;span class=&quot;c&quot;&gt;# installs patch 357: closest supported version  &lt;/span&gt;
+    rvm system ; rvm gemset &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;system.gems ; rvm 1.8.7 ; rvm gemset import system.gems &lt;span class=&quot;c&quot;&gt;# migrate your gems  &lt;/span&gt;
+    rvm &lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;create default 1.8.7  
+  
+And reopen your terminal windows.  
+  
+Xcode and gcc:  
+  
+Right now Ruby requires gcc to compile, but Xcode 4.2 and later no longer ship with gcc. Instead they ship with llvm-gcc &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;to which gcc is a symlink&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and clang, neither of which are supported &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;building Ruby. Xcode 4.1 was the last version to ship gcc, which was /usr/bin/gcc-4.2.  
+  
+Xcode 4.1 and earlier:   
+- Ruby will build fine.  
+  
+Xcode 4.2 and later &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;including Command Line Tools &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Xcode&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:  
+- If you have gcc-4.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;and friends&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; from an earlier Xcode version, Ruby will build fine.
+- If you don&lt;span class=&quot;se&quot;&gt;\’&lt;/span&gt;t have gcc-4.2, you have two options to get it:  
+ * Install apple-gcc42 from Homebrew
+ * Install osx-gcc-installer
+  
+  Homebrew:  
+  
+  If you are using Homebrew, you can install the apple-gcc42 and required libraries from homebrew/dupes:  
+      brew update  
+      brew tap homebrew/dupes  
+      brew install autoconf automake apple-gcc42
+      rvm pkg install openssl  
+  
+  This can live side by side with an existing Xcode 4.2+ install or Command Line Tools &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Xcode.  
+  
+  osx-gcc-installer:  
+  
+  If you don&lt;span class=&quot;se&quot;&gt;\’&lt;/span&gt;t use Homebrew, you can download and install osx-gcc-installer: https://github.com/kennethreitz/osx-gcc-installer.  
+  
+  Warning: Installing osx-gcc-installer on top of a recent Xcode is known to cause problems, so you must uninstall Xcode before installing osx-gcc-installer. Afterwards you may install Xcode 4.2+ or Command Line Tools &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Xcode &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;you desire.  
+  
+  ** NOTE: Currently, Node.js is having issues building with osx-gcc-installer. The only fix is to install Xcode over osx-gcc-installer.  
+  
+Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;根据提示，首先安装 homebrew&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ruby &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -fsSkL raw.github.com/mxcl/homebrew/go&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;然后执行以下安装&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install libksba
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew update
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew tap homebrew/dupes
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install autoconf automake apple-gcc42
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm pkg install openssl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;由于万恶的校园网，libksba 老是找不到 host，果断跳过。&lt;/p&gt;
+
+&lt;p&gt;现在，就可以正常用 RVM 安装 Ruby 了&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm install 1.9.3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.9.3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm --default 1.9.3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+
+</content>
+	</entry>
+	
+	<entry>
+		<title>说说Google Calendar</title>
+		<link href="http://elilien.com/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms/"/>
+		<updated>2012-09-16T00:00:00+08:00</updated>
+		<id>http://elilien.com/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms/</id>
+		<content type="html">&lt;p&gt;开学两周了，课表还没打印，正愁着什么时候去打印课程表，Google Calendar 这货突然在我脑子里面闪过，对啊！我为毛不把课程表弄到 Google Calendar 里面呢！
+上教学管理部网站查到自己的课程表，虽然有点参差不齐，但是我有 Calendar 这等神器啊！&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.flickr.com/photos/eli-lien/7991785467/&quot; title=&quot;Screen Shot 2012-09-16 at 8.41.50 PM by im.elilien, on Flickr&quot;&gt;&lt;img src=&quot;http://farm9.staticflickr.com/8173/7991785467_fcac70eebc_z.jpg&quot; width=&quot;640&quot; height=&quot;418&quot; alt=&quot;Screen Shot 2012-09-16 at 8.41.50 PM&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+
+
+&lt;p&gt;首先把每一项课程记录在某一周内，然后按住 option 键拖动就能复制该课程到任意一天，这步搞定了直接 File-&gt;Export-&gt;Export，得到 ics 文件，再进入 Google Calendar 导入就能得到一个课程表的日历，之后还可以建立其他的日历，比如 Activities，这样就方便将不同的行程与不同的人共享，Curriculum 可以与同班同学共享，Activities 可以与好友共享，设置-&gt;移动设置，验证自己的手机号码，就能设定比如行程的30分钟前来短信通知，而且，这个碉堡的功能是免费的！&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.flickr.com/photos/eli-lien/7991636717/&quot; title=&quot;Screen Shot 2012-09-16 at 8.22.30 PM by im.elilien, on Flickr&quot;&gt;&lt;img src=&quot;http://farm9.staticflickr.com/8459/7991636717_275e81d07c_z.jpg&quot; width=&quot;640&quot; height=&quot;387&quot; alt=&quot;Screen Shot 2012-09-16 at 8.22.30 PM&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+
+
+&lt;div align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.flickr.com/photos/eli-lien/7991635853/&quot; title=&quot;Screen Shot 2012-09-16 at 8.22.12 PM by im.elilien, on Flickr&quot;&gt;&lt;img src=&quot;http://farm9.staticflickr.com/8029/7991635853_f3a9c5b5af_z.jpg&quot; width=&quot;640&quot; height=&quot;387&quot; alt=&quot;Screen Shot 2012-09-16 at 8.22.12 PM&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+
+</content>
+	</entry>
 	
 	<entry>
 		<title>再见</title>

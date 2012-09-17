@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>Special use of Terminal</title>
+	<title>Configure My Ruby Development Environment</title>
 	<meta name="author" content="Eli Lien" />
 	
-	<meta name="description" content="Special use of Terminal in Mac OS X" />
+	<meta name="description" content="Configure My Ruby Development Environment on OS X Mountain Lion (10.8.x)" />
 	
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
@@ -58,66 +58,127 @@
 	<div class="post-world">
 		<div class="post-item">
 			<div class="post-meta">
-			    <p class="date"><i>02</i><b>Aug</b></p>
+			    <p class="date"><i>17</i><b>Sep</b></p>
 			</div>
 
 			<h1 class="post-title">
-				Special use of Terminal
+				Configure My Ruby Development Environment
 				<div class="post-title-sub">
 					by Eli Lien – tags:
-					 <a href="/blog/tag/terminal/" rel="tag"><i class="hash">#</i>terminal</a>, <a href="/blog/tag/mac/" rel="tag"><i class="hash">#</i>mac</a>, <a href="/blog/tag/tips/" rel="tag"><i class="hash">#</i>tips</a>
+					 <a href="/blog/tag/ruby/" rel="tag"><i class="hash">#</i>ruby</a>, <a href="/blog/tag/development/" rel="tag"><i class="hash">#</i>development</a>, <a href="/blog/tag/environment/" rel="tag"><i class="hash">#</i>environment</a>, <a href="/blog/tag/os x/" rel="tag"><i class="hash">#</i>os x</a>
 				</div>
 			</h1>
 
 			<div class="post-content">
-				<p>用 Terminal 可以简单地完成很多事情，在我看来，比 OS X GUI 还要来的方便。</p>
+				<p>全新安装了 OS X Mountain Lion，这次在配置 Ruby 的时候发现跟 Mac OS X Lion 的步骤不一样了，在此做一个记录。</p>
 
-<ol>
-<li><p><code>lsof</code></p>
+<p>首先老方法安装 RVM</p>
 
-<ul>
-<li>列出当前用户所打开的文件以及打开这些文件对应的进程等，当 OS X 提示 "The item can't be xxx because it's xxx" 时可使用该命令查看使用该文件的进程并 kill 掉。</li>
-</ul>
-</li>
-<li><p><code>open</code></p>
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>curl -L get.rvm.io | bash -s stable
+</code></pre>
+</div>
 
-<ul>
-<li>该命令几乎可以打开一切我们所能想到的东西，文件/文件夹，网址 (<code>open http://elilien.com</code>)，远程屏幕共享 (<code>open vnc://1.2.3.4</code>)，甚至查找单词 (<code>open dict://apple</code>)。</li>
-</ul>
-</li>
-<li><p><code>pbcopy</code> 与 <code>pbpaste</code></p>
 
-<ul>
-<li>这两个命令能在 Terminal 与 OS X Clipboard 之间复制/粘贴数据，使用 <code>lsof | pbcopy</code> 可以将 lsof 当前内容复制到 OS X Clipboard 中，在需要之处用 ⌘+V 粘贴。</li>
-</ul>
-</li>
-<li><p><code>rm</code></p>
+<p>或者</p>
 
-<ul>
-<li>删除命令。可以在一瞬间批量删除多个文件/文件夹，名称支持通配符 "*"，慎用。<code>rm -i</code> 可在删除文件/文件夹前询问用户。查看更多用法 <code>man rm</code>。</li>
-</ul>
-</li>
-<li><p><code>killall appname</code> / <code>kill PID</code></p>
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="o">)</span>
+</code></pre>
+</div>
 
-<ul>
-<li>强制退出应用/进程 (当应用无响应的时候)。</li>
-</ul>
-</li>
-<li><p><code>sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Your Text"</code></p>
 
-<ul>
-<li>定制登录界面的提示，可以试试这个    <br/>
-<code>loginText="iSight image capture at login activen"`date "+on %m/%d/%Y at %H:%M:%S"`</code></li>
-</ul>
-</li>
-<li><p>FORCE EMPTY THE TRASH</p>
+<p>重新打开 Terminal</p>
 
-<ul>
-<li><code>sudo rm -r </code>将 Trash 内所有文件拖拽到 Terminal 窗口然后 return (注意 "-r" 后有一空格)。</li>
-<li><code>sudo rm -rf ~/.Trash/ /.Trashes/ /Volumes//.Trashes/</code></li>
-</ul>
-</li>
-</ol>
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>which rvm
+</code></pre>
+</div>
+
+
+<p>接下来配置 Ruby，用原来的方法</p>
+
+<div class="highlight"><pre><code class="bash">rvm install 1.9.3
+</code></pre>
+</div>
+
+
+<p>会有以下提示</p>
+
+<div class="highlight"><pre><code class="bash">For JRuby:  Install the JDK. See http://developer.apple.com/java/download/  <span class="c"># Current Java version &quot;1.6.0_26&quot;  </span>
+For IronRuby: Install Mono &gt;<span class="o">=</span> 2.6  
+For Ruby 1.9.3: Install libksba <span class="c"># If using Homebrew, &#39;brew install libksba&#39;</span>
+  
+To use an RVM installed Ruby as default, instead of the system ruby:  
+  
+    rvm install 1.8.7 <span class="c"># installs patch 357: closest supported version  </span>
+    rvm system ; rvm gemset <span class="nb">export </span>system.gems ; rvm 1.8.7 ; rvm gemset import system.gems <span class="c"># migrate your gems  </span>
+    rvm <span class="nb">alias </span>create default 1.8.7  
+  
+And reopen your terminal windows.  
+  
+Xcode and gcc:  
+  
+Right now Ruby requires gcc to compile, but Xcode 4.2 and later no longer ship with gcc. Instead they ship with llvm-gcc <span class="o">(</span>to which gcc is a symlink<span class="o">)</span> and clang, neither of which are supported <span class="k">for </span>building Ruby. Xcode 4.1 was the last version to ship gcc, which was /usr/bin/gcc-4.2.  
+  
+Xcode 4.1 and earlier:   
+- Ruby will build fine.  
+  
+Xcode 4.2 and later <span class="o">(</span>including Command Line Tools <span class="k">for </span>Xcode<span class="o">)</span>:  
+- If you have gcc-4.2 <span class="o">(</span>and friends<span class="o">)</span> from an earlier Xcode version, Ruby will build fine.
+- If you don<span class="se">\’</span>t have gcc-4.2, you have two options to get it:  
+ * Install apple-gcc42 from Homebrew
+ * Install osx-gcc-installer
+  
+  Homebrew:  
+  
+  If you are using Homebrew, you can install the apple-gcc42 and required libraries from homebrew/dupes:  
+      brew update  
+      brew tap homebrew/dupes  
+      brew install autoconf automake apple-gcc42
+      rvm pkg install openssl  
+  
+  This can live side by side with an existing Xcode 4.2+ install or Command Line Tools <span class="k">for </span>Xcode.  
+  
+  osx-gcc-installer:  
+  
+  If you don<span class="se">\’</span>t use Homebrew, you can download and install osx-gcc-installer: https://github.com/kennethreitz/osx-gcc-installer.  
+  
+  Warning: Installing osx-gcc-installer on top of a recent Xcode is known to cause problems, so you must uninstall Xcode before installing osx-gcc-installer. Afterwards you may install Xcode 4.2+ or Command Line Tools <span class="k">for </span>Xcode <span class="k">if </span>you desire.  
+  
+  ** NOTE: Currently, Node.js is having issues building with osx-gcc-installer. The only fix is to install Xcode over osx-gcc-installer.  
+  
+Press <span class="s1">&#39;q&#39;</span> to <span class="k">continue</span>.
+</code></pre>
+</div>
+
+
+<p>根据提示，首先安装 homebrew</p>
+
+<div class="highlight"><pre><code class="bash">ruby &lt;<span class="o">(</span>curl -fsSkL raw.github.com/mxcl/homebrew/go<span class="o">)</span>
+</code></pre>
+</div>
+
+
+<p>然后执行以下安装</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>brew install libksba
+<span class="nv">$ </span>brew update
+<span class="nv">$ </span>brew tap homebrew/dupes
+<span class="nv">$ </span>brew install autoconf automake apple-gcc42
+<span class="nv">$ </span>rvm pkg install openssl
+</code></pre>
+</div>
+
+
+<p>由于万恶的校园网，libksba 老是找不到 host，果断跳过。</p>
+
+<p>现在，就可以正常用 RVM 安装 Ruby 了</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rvm install 1.9.3
+<span class="nv">$ </span>rvm use 1.9.3
+<span class="nv">$ </span>rvm --default 1.9.3
+</code></pre>
+</div>
+
+
 
 
 			</div>
