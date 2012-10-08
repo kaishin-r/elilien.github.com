@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /javascripts/
+Disallow: /resources/
+Disallow: /stylesheets/
+
+Sitemap: /blog/Sitemap.xml
