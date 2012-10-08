@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121008095504" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121008095504" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121008101148" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121008101148" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121008095504" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121008095504" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121008095504" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121008101148" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121008101148" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121008101148" type="text/javascript" charset="utf-8"></script>
 	
 </head>
 
@@ -83,13 +83,12 @@
     <span class="kd">public</span> <span class="nf">JdbcFiles</span><span class="o">()</span>  <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
 
            <span class="k">try</span><span class="o">{</span>
-               <span class="k">if</span><span class="o">(</span><span class="n">conn</span><span class="o">==</span><span class="kc">null</span><span class="o">||</span><span class="n">conn</span><span class="o">.</span><span class="na">isClosed</span><span class="o">()){</span>
                <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
                <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://database_server:port/database&quot;</span><span class="o">;</span>
                
                <span class="c1">//get a connection to the database for a user named booksystem</span>
                <span class="n">conn</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="s">&quot;uid&quot;</span><span class="o">,</span> <span class="s">&quot;pwd&quot;</span><span class="o">);</span>
-               <span class="o">}</span>
+               
         <span class="o">...</span>
 
         <span class="o">}</span>
