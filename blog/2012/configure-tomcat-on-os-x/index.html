@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>买了个Flickr Pro</title>
+	<title>在OS X下配置Tomcat</title>
 	<meta name="author" content="Eli Lien" />
 	
-	<meta name="description" content="Buy a Flickr Pro Update" />
+	<meta name="description" content="Configure Tomcat 7 for Eclipse on OS X" />
 	
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
@@ -56,29 +56,62 @@
 	<div class="post-world">
 		<div class="post-item">
 			<div class="post-meta">
-			    <p class="date"><i>28</i><b>Aug</b></p>
+			    <p class="date"><i>10</i><b>Oct</b></p>
 			</div>
 
 			<h1 class="post-title">
-				买了个Flickr Pro
+				在OS X下配置Tomcat
 				<div class="post-title-sub">
 					by Eli Lien – tags:
-					 <a href="/blog/tag/flickr/" rel="tag"><i class="hash">#</i>flickr</a>, <a href="/blog/tag/photos/" rel="tag"><i class="hash">#</i>photos</a>
+					 <a href="/blog/tag/tomcat/" rel="tag"><i class="hash">#</i>tomcat</a>, <a href="/blog/tag/eclipse/" rel="tag"><i class="hash">#</i>eclipse</a>, <a href="/blog/tag/os x/" rel="tag"><i class="hash">#</i>os x</a>
 				</div>
 			</h1>
 
 			<div class="post-content">
-				<p>前一天晚上在整理着最近的照片时，鬼使神差就想到了 Flickr 这个神一般的服务，于是乎在用着免费帐户的情况下各种上传照片，挂了一个晚上，第二天早上起来看电脑，发现 Photostream 里面只保留了最新200张照片，我知道，这一次，我真心淡腾了。</p>
+				<p>先说一下系统环境，OS X Mountain Lion with Java SE 6 (build 1.6.0_35-b10-428-11M3811) 32/64-bit。</p>
 
-<p>昨儿晚上刚回到家就跟抽风似的买了个 Flickr Pro Update，也许是受那个200张的诟病，不管了，今晚继续通宵上传，嗯，我就是个淡腾的主还不允许自己淡腾。</p>
+<ul>
+<li><p>配置 Tomcat</p>
 
-<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7874663036/" title="Screen Shot 2012-08-28 at 2.23.38 AM by im.elilien, on Flickr"><img src="http://farm8.staticflickr.com/7277/7874663036_46af52707d_z.jpg" width="640" height="381" alt="Screen Shot 2012-08-28 at 2.23.38 AM"></a></div>
+<ol>
+<li>从 <a href="http://tomcat.apache.org/">Apache Tomcat</a> 下载 core 版本的 Tomcat 包 (tar.gz/zip)。</li>
+<li>解压后用 <code>mv</code> 命令移动到 /usr/local 目录。</li>
+<li>在 /Library 下为 Tomcat 创建一个 Symbolic Link
 
+<ul>
+<li><code>sudo ln -s /usr/local/apache-tomcat-7.0.32 /Libray/Tomcat</code></li>
+</ul>
+</li>
+<li>为用户设置权限
 
-<br>
+<ul>
+<li><code>sudo chown -R elilien /Library/Tomcat</code></li>
+</ul>
+</li>
+<li>开放 Tomcat 下 shell 访问权限
 
+<ul>
+<li><code>sudo chmod +x /Library/Tomcat/bin/*.sh</code></li>
+</ul>
+</li>
+<li>Start / Shutdown
 
-<p>Welcome! <a href="http://www.flickr.com/photos/eli-lien/">http://www.flickr.com/photos/eli-lien/</a></p>
+<ul>
+<li><code>/Library/Tomcat/bin/startup.sh</code></li>
+<li><code>/Library/Tomcat/bin/shutdown.sh</code></li>
+</ul>
+</li>
+<li>访问 http://localhost:8080</li>
+</ol>
+</li>
+<li><p>配置 Eclipse</p>
+
+<ul>
+<li>Preferences -> Server -> Runtime Environments 添加 /Library/Tomcat 目录即可。</li>
+</ul>
+</li>
+</ul>
+
 
 			</div>
 			

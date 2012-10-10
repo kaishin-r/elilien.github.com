@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>买了个Flickr Pro</title>
+	<title>elilien / blog</title>
 	<meta name="author" content="Eli Lien" />
 	
-	<meta name="description" content="Buy a Flickr Pro Update" />
+	<meta name="description" content="A blog belong to Eli Lien. Talks about my coding life, also something about Design and Art." />
 	
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
@@ -43,7 +43,7 @@
 	
 	<div id="header">
 		<div id="title">
-			<!-- <a href="/blog/">blog</a> / article -->
+			<!-- <a href="/blog/">blog</a> -->
 		</div>
 		<div id="navigation">
 			<a href="/">about</a>
@@ -54,38 +54,117 @@
 	</div>
 	
 	<div class="post-world">
-		<div class="post-item">
-			<div class="post-meta">
-			    <p class="date"><i>28</i><b>Aug</b></p>
-			</div>
+		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>02</i><b>Nov</b></p>
+	</div>
 
-			<h1 class="post-title">
-				买了个Flickr Pro
-				<div class="post-title-sub">
-					by Eli Lien – tags:
-					 <a href="/blog/tag/flickr/" rel="tag"><i class="hash">#</i>flickr</a>, <a href="/blog/tag/photos/" rel="tag"><i class="hash">#</i>photos</a>
-				</div>
-			</h1>
-
-			<div class="post-content">
-				<p>前一天晚上在整理着最近的照片时，鬼使神差就想到了 Flickr 这个神一般的服务，于是乎在用着免费帐户的情况下各种上传照片，挂了一个晚上，第二天早上起来看电脑，发现 Photostream 里面只保留了最新200张照片，我知道，这一次，我真心淡腾了。</p>
-
-<p>昨儿晚上刚回到家就跟抽风似的买了个 Flickr Pro Update，也许是受那个200张的诟病，不管了，今晚继续通宵上传，嗯，我就是个淡腾的主还不允许自己淡腾。</p>
-
-<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7874663036/" title="Screen Shot 2012-08-28 at 2.23.38 AM by im.elilien, on Flickr"><img src="http://farm8.staticflickr.com/7277/7874663036_46af52707d_z.jpg" width="640" height="381" alt="Screen Shot 2012-08-28 at 2.23.38 AM"></a></div>
-
-
-<br>
-
-
-<p>Welcome! <a href="http://www.flickr.com/photos/eli-lien/">http://www.flickr.com/photos/eli-lien/</a></p>
-
-			</div>
-			
-			<div class="post-comments">
-				<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/elilien/embed.js"></script><noscript><a href="http://disqus.com/forums/elilien/?url=ref">View the discussion thread.</a></noscript>
-			</div>
+	<h1 class="post-title">
+		<a href="/blog/2011/mac-os-x-lion-trim-support-for-the-third-part-ssd/">OS X对第三方SSD的TRIM支持</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/mac os x lion/" rel="tag"><i class="hash">#</i>mac os x lion</a>, <a href="/blog/tag/ssd/" rel="tag"><i class="hash">#</i>ssd</a>, <a href="/blog/tag/trim/" rel="tag"><i class="hash">#</i>trim</a>, <a href="/blog/tag/kernel/" rel="tag"><i class="hash">#</i>kernel</a>
 		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>在 Mac OS X 中，苹果官方默认只对自己认证的 SSD 提供 TRIM 支持。</p>
+
+<blockquote><h4><em>什么是 TRIM</em></h4>
+
+<blockquote><p>在系统要向硬盘写入数据时，会先通知硬盘将以前的数据擦除，再将数据写入。而在删除数据时，系统只是会在需要删除的数据块处作一个标记，说明此处数据块无用，等到有新的数据写入需要占用该数据块的时候才会真正删除该数据块。前面提到的作标记动作会先保留在磁盘缓存中，等到磁盘空闲的时候才会执行。如此一来，磁盘便需要更多的时间来执行上述操作，存取速度就会变慢。而当 Mac OS X 识别到已经认证的 SSD 后便会默认开启 TRIM 支持，此时删除数据就不会直接向硬盘发出删除指令了，只使用 Volume Bitmap 来记录删除的数据块，Volume Bitmap 仅仅是一个磁盘快照，其读写数据的速度比直接读写硬盘去标记删除区域要快得多，这样就会大大节省数据的读写操作时间。而后是向磁盘写入数据，由于 NAND 闪存保存数据是纯粹的数字形式，因此可以直接根据 Volume Bitmap 的情况，向快照中已删除的区块写入新的数据，而不用花时间去擦除原来的数据块。</p></blockquote></blockquote>
+
+<p>我们可以用如下方法开启 Lion 对 TRIM 的支持。</p>
+
+<p>在 Terminal 中</p>
+
+<ul>
+<li>备份需要修改的内核文件</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original
+</code></pre>
+</div>
+
+
+<ul>
+<li>开启 TRIM 支持</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="bash">sudo perl -pi -e <span class="s1">&#39;s|(x52x6Fx74x61x74x69x6Fx6Ex61x6Cx00).{9}(x00x51)|$1x00x00x00x00x00x00x00x00x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></pre>
+</div>
+
+
+<ul>
+<li>清空系统内核扩展缓存 (kernel extension cache)</li>
+</ul>
+
+
+<div class="highlight"><pre><code class="bash">sudo kextcache -system-prelinked-kernel
+sudo kextcache -system-caches
+</code></pre>
+</div>
+
+
+<ul>
+<li>重启系统，Enjoy!</li>
+</ul>
+
+
+<hr />
+
+<p>关闭 TRIM 使用以下命令</p>
+
+<div class="highlight"><pre><code class="bash">sudo perl -pi -e <span class="s1">&#39;s|(x52x6Fx74x61x74x69x6Fx6Ex61x6Cx00).{9}(x00x51)|$1x41x50x50x4Cx45x20x53x53x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+sudo kextcache -system-prelinked-kernel
+sudo kextcache -system-caches
+</code></pre>
+</div>
+
+
+<p>若遇到严重错误恢复备份</p>
+
+<div class="highlight"><pre><code class="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></pre>
+</div>
+
+
+<p>该原理仅是用 "0" 替换 "IOAHCIBlockStorage" 文件中的 "APPLE SSD" 字符串，以绕过 Apple 通过字符串检测是否为自己认证 SSD 之验证。</p>
+
+<p>当在 "System Report" 中看到如下内容 (<strong>TRIM Support: YES</strong>) 时，Macbook Pro 已经开启了对第三方 SSD 的 TRIM 支持。</p>
+
+<div class="highlight"><pre><code class="text">INTEL SSDSA2M160G2GN:
+    
+  Capacity: 160.04 GB (160,041,885,696 bytes)
+  Model:    INTEL SSDSA2M160G2GN                    
+  Revision: 2CV102HD
+  Serial Number:    CVPO045100J6160AGN  
+  Native Command Queuing:   Yes
+  Queue Depth:  32
+  Removable Media:  No
+  Detachable Drive: No
+  BSD Name: disk0
+  Medium Type:  Solid State
+  TRIM Support: Yes
+  Partition Map Type:   GPT (GUID Partition Table)
+  S.M.A.R.T. status:    Verified
+</code></pre>
+</div>
+
+
+
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2011/mac-os-x-lion-trim-support-for-the-third-part-ssd//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	</div>
 	
 	<div class="sidebar">
@@ -156,6 +235,12 @@
 <div class="clear"></div>
 	
 	<div class="post-paginator">
+	
+	
+		
+			<a href="/blog/page3" class="newer">newer &rarr;</a>
+		
+	
 	<a href="/blog/archive/">archive</a><br />
 	<a href="http://elilien.com/blog/atom.xml">rss</a>
 </div>
@@ -179,4 +264,3 @@
 
 </body>
 </html>
-

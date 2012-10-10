@@ -4,13 +4,65 @@
 	<title>elilien / blog</title>
 	<link href="http://elilien.com/blog/atom.xml" rel="self" />
 	<link href="http://elilien.com/blog/" />
-	<updated>2012-10-08T10:11:48+08:00</updated>
+	<updated>2012-10-10T17:27:37+08:00</updated>
 	<id>http://elilien.com/blog/</id>
 	<author>
 		<name>Eli Lien</name>
 		<email>elilien@me.com</email>
 	</author>
 	
+	
+	<entry>
+		<title>在OS X下配置Tomcat</title>
+		<link href="http://elilien.com/blog/2012/configure-tomcat-on-os-x/"/>
+		<updated>2012-10-10T00:00:00+08:00</updated>
+		<id>http://elilien.com/blog/2012/configure-tomcat-on-os-x/</id>
+		<content type="html">&lt;p&gt;先说一下系统环境，OS X Mountain Lion with Java SE 6 (build 1.6.0_35-b10-428-11M3811) 32/64-bit。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;配置 Tomcat&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;从 &lt;a href=&quot;http://tomcat.apache.org/&quot;&gt;Apache Tomcat&lt;/a&gt; 下载 core 版本的 Tomcat 包 (tar.gz/zip)。&lt;/li&gt;
+&lt;li&gt;解压后用 &lt;code&gt;mv&lt;/code&gt; 命令移动到 /usr/local 目录。&lt;/li&gt;
+&lt;li&gt;在 /Library 下为 Tomcat 创建一个 Symbolic Link
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo ln -s /usr/local/apache-tomcat-7.0.32 /Libray/Tomcat&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;为用户设置权限
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo chown -R elilien /Library/Tomcat&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;开放 Tomcat 下 shell 访问权限
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo chmod +x /Library/Tomcat/bin/*.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Start / Shutdown
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/Library/Tomcat/bin/startup.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/Library/Tomcat/bin/shutdown.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;访问 http://localhost:8080&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;配置 Eclipse&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Preferences -&gt; Server -&gt; Runtime Environments 添加 /Library/Tomcat 目录即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+	</entry>
 	
 	<entry>
 		<title>Storing Database Connection In A Static Class</title>

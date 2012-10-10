@@ -13,33 +13,31 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121008101148" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121008101148" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121010172737" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121010172737" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121008101148" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121008101148" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121008101148" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121010172737" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121010172737" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121010172737" type="text/javascript" charset="utf-8"></script>
 	
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33697767-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 
 <body>
 <div id="debug"></div>
-<script type="text/javascript">
-
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-33697767-1']);
-	_gaq.push(['_trackPageview']);
-
-	(function() {
-		if (document.location.host.indexOf("elilien.com") == -1) {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);	
-		};
-	})();
-
-</script>
 
 <div id="universe">
 	
@@ -57,6 +55,72 @@
 	
 	<div class="post-world">
 		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>10</i><b>Oct</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/configure-tomcat-on-os-x/">在OS X下配置Tomcat</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/tomcat/" rel="tag"><i class="hash">#</i>tomcat</a>, <a href="/blog/tag/eclipse/" rel="tag"><i class="hash">#</i>eclipse</a>, <a href="/blog/tag/os x/" rel="tag"><i class="hash">#</i>os x</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>先说一下系统环境，OS X Mountain Lion with Java SE 6 (build 1.6.0_35-b10-428-11M3811) 32/64-bit。</p>
+
+<ul>
+<li><p>配置 Tomcat</p>
+
+<ol>
+<li>从 <a href="http://tomcat.apache.org/">Apache Tomcat</a> 下载 core 版本的 Tomcat 包 (tar.gz/zip)。</li>
+<li>解压后用 <code>mv</code> 命令移动到 /usr/local 目录。</li>
+<li>在 /Library 下为 Tomcat 创建一个 Symbolic Link
+
+<ul>
+<li><code>sudo ln -s /usr/local/apache-tomcat-7.0.32 /Libray/Tomcat</code></li>
+</ul>
+</li>
+<li>为用户设置权限
+
+<ul>
+<li><code>sudo chown -R elilien /Library/Tomcat</code></li>
+</ul>
+</li>
+<li>开放 Tomcat 下 shell 访问权限
+
+<ul>
+<li><code>sudo chmod +x /Library/Tomcat/bin/*.sh</code></li>
+</ul>
+</li>
+<li>Start / Shutdown
+
+<ul>
+<li><code>/Library/Tomcat/bin/startup.sh</code></li>
+<li><code>/Library/Tomcat/bin/shutdown.sh</code></li>
+</ul>
+</li>
+<li>访问 http://localhost:8080</li>
+</ol>
+</li>
+<li><p>配置 Eclipse</p>
+
+<ul>
+<li>Preferences -> Server -> Runtime Environments 添加 /Library/Tomcat 目录即可。</li>
+</ul>
+</li>
+</ul>
+
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/configure-tomcat-on-os-x//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	<div class="post-item">
 	<div class="post-meta">
 	    <p class="date"><i>07</i><b>Oct</b></p>
@@ -298,47 +362,6 @@ Press <span class="s1">&#39;q&#39;</span> to <span class="k">continue</span>.
 	</p>
 </div>
 
-	<div class="post-item">
-	<div class="post-meta">
-	    <p class="date"><i>01</i><b>Sep</b></p>
-	</div>
-
-	<h1 class="post-title">
-		<a href="/blog/2012/leaving-for-dalian/">再见</a>
-		<div class="post-title-sub">
-			by Eli Lien – tags:
-			 <a href="/blog/tag/log/" rel="tag"><i class="hash">#</i>log</a>
-		</div>
-	</h1>
-
-	<div class="post-content">
-		<p>再有8小时15分钟，我就要离开这一片养育我十九年的热土。</p>
-
-<p>又一次的北上，又一次的失眠。</p>
-
-<p>记起第一次到大连，是妈妈和小姑一块儿把我给送过去的，第一次坐那么远的火车，从桂南站，到北京站，再转大连站，一路奔波，可惜的是在北京待的唯一一天还下起了不小的雨，不玩也罢，到大连火车站，很有幸遇上了很古朴风的铛铛车。随着学校迎新的车一路拐弯，我的思绪跟着飘扬，那时候对大连这个城市还是有着许多的憧憬..</p>
-
-<p>第一个学期结束，小姑不管怎样都不让我坐火车回家了，路途遥远不说，最主要的还是让人身心疲惫，毕竟我目前还只能作为一个匆匆的过客，而不是旅人，缺少的是那一颗闲暇的心。</p>
-
-<p>就这样，转眼间，我来到了大三，也就是明天报到后，我便是正式的大三学长了。有好几次一想到这儿，我就会微微地发慌。不禁感叹，时间过得可真快，我还没准备好，大半个大学生活就过去了，而数数自己那些少得可怜的知识，我多么希望重新来过。家里面一直坚持让我考研，这让我很情何以堪的，我的性格我很明白，但是有时候仔细想想，我那一丁点的理智告诉我，也许还是考个研好吧！也许，我需要更多的时间来思考，只是，我已经是大三的人了。</p>
-
-<p>回眸每一次回家，看到越发年级大的爸妈，心头就一阵阵的辛酸，我尝试着让自己乐观，总想为他们做些什么，这个时候才感受得到自己的弱小，还不足以撑起一个家。嗯，岁月果真是一把杀猪刀。</p>
-
-<p>自从有了网络，我就深深感觉到自己跟家里人的沟通更少了，不愿意出门，哪怕是爸妈说要带我出去玩，更怕见到熟人，我现在很难过就是跟家人有着那么近的距离居然说不上几句话，也许是我的内心藏着太多的秘密，不愿去分享，只好一个人来承担。</p>
-
-<p>马上就要离开，现在才发现，我是有多么地舍不得他们，多想要跟他们再待几天。</p>
-
-<p>夜深了，天也快亮了，眯一会儿眼睛我就要出发，也许，这就是成长，我也只好用这句扯淡的话来安慰安慰自己，好在明天分别的时候别流泪。</p>
-
-<p>Eli 写于2012年9月1日 现在是凌晨3点整</p>
-
-	</div>
-	
-	<p class="post-comment-link">
-		<a href="/blog/2012/leaving-for-dalian//#disqus_thread">Comments</a>
-	</p>
-</div>
-
 	</div>
 	
 	<div class="sidebar">
@@ -376,6 +399,9 @@ Press <span class="s1">&#39;q&#39;</span> to <span class="k">continue</span>.
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>10 Oct</dt>
+				<dd><a href="/blog/2012/configure-tomcat-on-os-x/" class="title">在OS X下配置Tomcat</a></dd>
+			
 				<dt>07 Oct</dt>
 				<dd><a href="/blog/2012/storing-database-connection-in-a-static-class/" class="title">Storing Database Connection In A Static Class</a></dd>
 			
@@ -396,9 +422,6 @@ Press <span class="s1">&#39;q&#39;</span> to <span class="k">continue</span>.
 			
 				<dt>06 Aug</dt>
 				<dd><a href="/blog/2012/goagent-on-gae-remastered/" class="title">在GAE上部署GoAgent</a></dd>
-			
-				<dt>02 Aug</dt>
-				<dd><a href="/blog/2012/special-use-of-terminal/" class="title">Special use of Terminal</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>
