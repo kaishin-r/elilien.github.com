@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121018002602" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121018002602" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121018002602" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121018002602" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121018002602" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -55,6 +55,110 @@
 	
 	<div class="post-world">
 		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>06</i><b>Aug</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/goagent-on-gae-remastered/">在GAE上部署GoAgent</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/goagent/" rel="tag"><i class="hash">#</i>goagent</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>声明一下，这篇文章于 Apr. 24, 2012 发表在我原来的 Wordpress 博客中，由于迁移到新的平台，而且原来的排版也很糟糕，所以 remaster 了现在的这个版本。</p>
+
+<h3>前言</h3>
+
+<p>GAE 是由 Google 提供的一个云计算平台，用户可以免费或付费在上面部署自己的应用。</p>
+
+<p>GoAgent 是使用 Python 和 Google App Engine SDK 编写的网络软件，可以运行在 Windows / Mac OS X / Linux / <a href="https://code.google.com/p/gaeproxy">Android</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_IOS">iPod Touch</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_IOS">iPhone</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_IOS">iPad</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_webOS">webOS</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_OpenWRT">OpenWRT</a> / <a href="https://code.google.com/p/goagent/wiki/GoAgent_Maemo">Maemo</a> 上。</p>
+
+<h3>正文</h3>
+
+<ol>
+<li><p>登录 <a href="https://appengine.google.com/">GAE</a>，没有 Google 帐户请<a href="https://accounts.google.com/SignUp">猛击</a>。</p></li>
+<li><p>Create Application，"Application Identifier" 处填写 app_id，Application Title 处随意。</p></li>
+<li><p>在 <a href="https://code.google.com/p/goagent/">GoAgent Project</a> 主页下载对应包包并 unzip 得到 goagent 文件夹。</p></li>
+<li><p>修改 local/proxy.ini 中 [gae] 下 "appid=" 值为第二步中创建的 app_id，多个 app_id 间用 "|" 隔开。</p></li>
+<li><p>上传</p>
+
+<ul>
+<li>Mac OS X 用户: 在 Terminal 中 cd 进入 server 目录 <code>uploaddir=python python uploader.zip</code> (若出现502错误重复该步骤，多个 app_id 依次填写 "APPID" 分别上传。)</li>
+<li>Windows 用户: 修改 server\golang\app.yaml 中 applicaion 值为 app_id，先运行 local\proxy.exe，然后双击 server\uploader.bat，根据提示信息输入相应 application, email 及 password</li>
+<li>上传成功后代理的地址为 127.0.0.1:8087</li>
+</ul>
+</li>
+<li><p>Mac OS X 用户需在 GoAgent.app -> 右键 -> Show Package Contents，编辑 Contents/Info.plist 将 GoAgentPath 值修改为 <code>/Applications/GoAgent/local/proxy.py</code></p></li>
+<li><p>运行</p>
+
+<ul>
+<li>Mac OS X 用户运行 GoAgent.app</li>
+<li>Windows 用户以管理员身份运行 goagent.exe (双击 addto-startup.vbs 实现开机自启动)</li>
+</ul>
+</li>
+<li><p>到 Chrome Web Store 下载 <a href="https://chrome.google.com/webstore/detail/dpplabbmogkhghncfbfdeeokoefdjegm">SwitchySharp</a>，SwitchySharp Options -> Import/Export，"Restore from Online" 处填写 <a href="http://goagent.googlecode.com/files/SwitchyOptions.bak">http://goagent.googlecode.com/files/SwitchyOptions.bak</a>，Restore from Online 后切换到 "Switch Rules" 点击右下方 "Update List Now"，提示 "Rule list update successfully" 即成功。(FireFox 用户可使用 <a href="https://addons.mozilla.org/zh-cn/firefox/addon/autoproxy/">AutoProxy</a>，原理相同。)</p></li>
+<li><p>解决证书问题</p>
+
+<ul>
+<li>Mac OS X:
+
+<ul>
+<li>打开 Keychain Access -> Login -> Certificates，找到 "GoAgent CA" 并删除</li>
+<li>打开 /Applications/GoAgent/local 找到 "CA.crt" 双击导入并选择 "Always Trust"</li>
+<li>在 Keychain Access -> Login -> Certificates 找到 "GoAgent CA" 右键 -> Get Info，展开 Trust 栏并将 "When using this certificate" 改为 "Always Trust"。</li>
+</ul>
+</li>
+<li>Windows 原理相同未试验。</li>
+</ul>
+</li>
+<li><p>在 Mac OS X 下配置全局自动代理</p>
+
+<ul>
+<li>Chrome -> SwithySharp Options -> Import/Export -> Export PAC Fi​​le</li>
+<li>将导出的 SwichyPac.pac 移动到 ~/Library/Internet Plug-Ins 目录下</li>
+<li>打开网络设置 (System Preferences -> Network) Advanced -> Proxies -> Automatic Proxy Configuration，勾选之并在右边选择上一步导出的 SwichyPac.pac 路径，保存即可。(SwichyPac.pac 必须放在 ~/Library/Internet Plug-Ins 目录下，否则由于 sandbox 的原因 Safari 不能识别 PAC 规则。该方法在 Mac OS X 10.7 及之前版本的系统中有效，自 OS X 10.8 开始 Safari 已无法正常被代理，目前问题正在解决中。)</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>常见问题</h3>
+
+<ul>
+<li>Google Reader 错误404: 使用 <a href="https://www.google.com/reader">https://www.google.com/reader/</a> 访问。</li>
+<li>Google Plus 不能看内嵌视频: 将 "*://*.ytimg.com/*" 加入 Rules。</li>
+<li>Youtube 不能上传及观看直播: 配置 [crlf]enable=0。</li>
+<li>提示 Error code 502:
+
+<ul>
+<li>401: Unauthorized 一般是处于内网环境中，需设置 proxy.ini 内 proxy 段落。</li>
+<li>404: Not Found 一般是 proxy.ini 内 app_id 未填对，或者服务端未部署成功。</li>
+<li>503: Service Unavailable 一般是流量用完，需更换 app_id。</li>
+</ul>
+</li>
+<li>uploader 上传失败:
+
+<ul>
+<li>400: Bad Request 到 http://appengine.google.com 新建一个 app_id 再上传。</li>
+<li>404: Not Found 对应 app_id 未创建。</li>
+<li>10060 连接服务器超时，挂 VPN 上传。</li>
+<li>10054 连接被重置，挂 VPN 上传。</li>
+</ul>
+</li>
+</ul>
+
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/goagent-on-gae-remastered//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	<div class="post-item">
 	<div class="post-meta">
 	    <p class="date"><i>02</i><b>Aug</b></p>
@@ -173,147 +277,21 @@
 
 <p>在我朝很多大学的校园网都是 IP 地址与 MAC 地址绑定的，路由器从外面收到发给子网的包时，直接用其事先存储的 ARP 表查出对应 MAC 地址而以这个 MAC 地址为目的 MAC 地址在子网内发包 , 这样没有注册的网卡就收不到外面来的包.  但这种方法有缺陷，就是对发出的包不检查，即使网卡 MAC 是未登记的， 也可以向外发数据包，而且可以用伪造的 IP， 当然有的路由器检查源 IP 的范围， 这时候伪造的 IP 也必须属于子网内的 IP。从根本上说，采用 IP-MAC 来防止 IP 盗用是不行的，所有的网卡 MAC 都可以修改，而且重点是网卡发出的包的源 MAC 地址并不是网卡本身写上去的， 而是应用程序提供的，只是在通常的实现中，应用程序先从网卡上得到了 MAC 地址，每次发送包的时候用这个 MAC 地址作为源 MAC 地址而已，所以我们仅仅靠修改网络的驱动程序就可以改变 MAC 地址。由于种种原因，像我，需要经常更换本本的工作地点，修改 MAC 地址就成了家常便饭，下面利用如上原理，说说修改的办法。</p>
 
-<p>首先在 Terminal 中查看当前网卡信息：</p>
+<p>首先在 Terminal 中查看当前网卡信息：    <br/>
+Liquid error: No such file or directory - posix_spawnp</p>
 
-<div class="highlight"><pre><code class="bash">ifconfig
-</code></pre>
-</div>
+<p>其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：
+Liquid error: No such file or directory - posix_spawnp
+<em>aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。</em></p>
 
-
-<p>其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：</p>
-
-<div class="highlight"><pre><code class="bash">sudo ifconfig en0 ether aa:bb:cc:dd:ee:ff
-</code></pre>
-</div>
-
-
-<p><em>aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。</em></p>
-
-<p>过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：</p>
-
-<div class="highlight"><pre><code class="bash">ifconfig en0
-</code></pre>
-</div>
-
-
-<p><em>注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。</em></p>
+<p>过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：
+Liquid error: No such file or directory - posix_spawnp
+<em>注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。</em></p>
 
 	</div>
 	
 	<p class="post-comment-link">
 		<a href="/blog/2012/change-mac-address-in-mac-os-x//#disqus_thread">Comments</a>
-	</p>
-</div>
-
-	<div class="post-item">
-	<div class="post-meta">
-	    <p class="date"><i>06</i><b>Jun</b></p>
-	</div>
-
-	<h1 class="post-title">
-		<a href="/blog/2012/bitwise-shift-operators-in-java/">Java中的移位运算符</a>
-		<div class="post-title-sub">
-			by Eli Lien – tags:
-			 <a href="/blog/tag/java/" rel="tag"><i class="hash">#</i>java</a>, <a href="/blog/tag/bitwise shift operators/" rel="tag"><i class="hash">#</i>bitwise shift operators</a>
-		</div>
-	</h1>
-
-	<div class="post-content">
-		<p>移位运算符面向的运算对象即是二进制中的“位”，主要包含：左移位运算符 (&lt;&lt;)，右移位运算符 (&gt;&gt;&gt;)，以及带符号的右移位运算符 (&gt;&gt;)。</p>
-
-<h3>左移位运算符 (&lt;&lt;)</h3>
-
-<p>左移位运算符是将运算符左边的对象向左移动运算符右边所指定的位数，并在低位补0。即向左移了 n 位，相当于乘以2的 n 次幂。例如：</p>
-
-<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LeftBitwiseShiftOperator</span> <span class="o">{</span>
-    <span class="cm">/**</span>
-<span class="cm">    * @param args</span>
-<span class="cm">    */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// TODO Auto-generated method stub</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result = &quot;</span><span class="o">+(</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-
-<p>运行结果：</p>
-
-<div class="highlight"><pre><code class="java"><span class="n">result</span> <span class="o">=</span> <span class="mi">8</span>
-</code></pre>
-</div>
-
-
-<p><em>以二进制表示十进制的2为 00000010，向左移动2位，就变成了 00001000，即十进制的8。也就相当于 2 * 2<sup>2</sup> = 8。</em></p>
-
-<h3>右移位运算符 (&gt;&gt;&gt;)</h3>
-
-<p>右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，并在高位补0。即向右移了 n 位，相当于乘以2的 -n 次幂。例如：</p>
-
-<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightBitwiseShiftOperator</span> <span class="o">{</span>
-    <span class="cm">/**</span>
-<span class="cm">    * @param args</span>
-<span class="cm">    */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// TODO Auto-generated method stub</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result = &quot;</span><span class="o">+(</span><span class="n">m</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-
-<p>运行结果：</p>
-
-<div class="highlight"><pre><code class="java"><span class="n">result</span> <span class="o">=</span> <span class="mi">2</span>
-</code></pre>
-</div>
-
-
-<p><em>以二进制表示十进制的8为 00001000，向右移动2位，就变成了 00000010，即十进制的2。也就相当于 8 *  2<sup>(-2)</sup> = 2。</em></p>
-
-<h3>带符号的右移位运算符 (&gt;&gt;)</h3>
-
-<p>带符号的右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，若左边的对象为正数，则在其高位补0，若左边的对象为负数，则在其高位补1。例如：</p>
-
-<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightBitwiseShiftOperatorWithSymbol</span> <span class="o">{</span>
-    <span class="cm">/**</span>
-<span class="cm">    * @param args</span>
-<span class="cm">    */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// TODO Auto-generated method stub</span>
-        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result1 = &quot;</span><span class="o">+(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result2 = &quot;</span><span class="o">+(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-
-<p>运行结果：</p>
-
-<div class="highlight"><pre><code class="java"><span class="n">result1</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">result2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
-</code></pre>
-</div>
-
-
-<p><em>x 的值为8，转换成二进制为 00001000，右移两位并在高位补0为 00000010，即是2。</em></p>
-
-<p><em>y 的值为-8，转换成二进制为 11110111，右移两位并在高位补1为 11111101，即是-2。</em></p>
-
-	</div>
-	
-	<p class="post-comment-link">
-		<a href="/blog/2012/bitwise-shift-operators-in-java//#disqus_thread">Comments</a>
 	</p>
 </div>
 
@@ -354,6 +332,9 @@
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>25 Nov</dt>
+				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
+			
 				<dt>10 Oct</dt>
 				<dd><a href="/blog/2012/configure-tomcat-on-os-x/" class="title">在OS X下配置Tomcat</a></dd>
 			
@@ -374,9 +355,6 @@
 			
 				<dt>28 Aug</dt>
 				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
-			
-				<dt>06 Aug</dt>
-				<dd><a href="/blog/2012/goagent-on-gae-remastered/" class="title">在GAE上部署GoAgent</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

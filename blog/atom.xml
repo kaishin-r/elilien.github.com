@@ -4,13 +4,33 @@
 	<title>elilien / blog</title>
 	<link href="http://elilien.com/blog/atom.xml" rel="self" />
 	<link href="http://elilien.com/blog/" />
-	<updated>2012-10-18T00:26:02+08:00</updated>
+	<updated>2012-11-25T00:51:30+08:00</updated>
 	<id>http://elilien.com/blog/</id>
 	<author>
 		<name>Eli Lien</name>
 		<email>elilien@me.com</email>
 	</author>
 	
+	
+	<entry>
+		<title>我过得很好</title>
+		<link href="http://elilien.com/blog/2012/i-lives-good/"/>
+		<updated>2012-11-25T00:00:00+08:00</updated>
+		<id>http://elilien.com/blog/2012/i-lives-good/</id>
+		<content type="html">&lt;p&gt;最近两个月都没怎么有时间更新博客，以至于 Google 都把我博客的搜索结果去头像了，泪啊～TAT&lt;/p&gt;
+
+&lt;p&gt;接下来做个近期小结吧：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;学习上：这学期也许我学得最认真的课程就是 j2ee 了吧！连我自己都忍不住要吐槽一下自己了，难道自己真的就不适合考研么，呵呵，还是事在人为的吧。其他的课程基本都没怎么听，一上课就拿出手机连上 vpn 刷推，下课时手机的剩余电量就是这科的期末成绩这句话说得一点没错啊！这学期也强迫过自己几次去图书馆，不过效果真的不太好，我真他妈是个大忙人啊！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;工作上：校园媒体联盟的事情也不是一般多，死胖子忘了当初给我的承诺么？不过正是因为这个原因，让我们几只有缘聚在了一起，小哆啦，红姐，酱油姐，小璐和淼，让我在对这个组织失望迷离之时又充满了信心，因为有你们，特别是小哆啦，我确信了我们留下来不是为了得到什么样的回报，只是希望自己的部门能够走出这个校门，小孩儿不被欺负，仅仅是这些，职位和聘书什么的都是浮云我们也不在乎，顺便吐槽一句，某些人可以去死了！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;生活上：最近出门活动比较频繁，花钱也大手大脚的，不过还好回家的机票订好了，双十一在杨童鞋指导下也中了150软妹币红包，海淘的同时没忘记给爸妈买两副好手套，这下我就安心了许多。也许是压力大吧，加上刘主任什么的卖菜也回来了，人尚还健全记得大家，吃鱼吃饭也成了家常便饭，倒是吃货小组的小瑞瑞和帆帆两位许久没有联系，记住，我们吃货小组不能散！这周二心血来潮团购了橙天嘉禾的四次观影卡跟基友看电影去，有几个能够说走就走陪你去二的朋友真的是心里很踏实。不过要说的是，这学期朋友圈有了些变化，走得近的有小哆啦，酱油姐，倩倩，巫姐，聪聪，嗯，也许我女生缘就是好吧，23333～&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;就写这么些，再看一遍上面苍白的文字又觉得我老了不止一点，因为在明天，还有很多已知的、未知的事情等着我去做，去拼搏...&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>在OS X下配置Tomcat</title>
@@ -71,56 +91,11 @@
 		<id>http://elilien.com/blog/2012/storing-database-connection-in-a-static-class/</id>
 		<content type="html">&lt;p&gt;这两天在写一个 Java 的程序 (Java + MySQL)，单用户登录，需要多次查询数据库，编译运行的时候发现每次需要查询数据库的时候都要等待3秒左右的时间，虽然是学校的服务器，但是校园网也不至于那么慢啊。开始以为是获取 MySQL 存储过程返回的 ResultSet 转换导致变慢的，但是我这儿数据也不多啊，之后换过数据库驱动也不济于事，最后发现每一次查询请求都会重新登录一遍数据库，用 &lt;code&gt;System.out.print();&lt;/code&gt; 测试了一下，果然是卡在登录那一步了，遂把程序跟数据库的连接写成静态的存在内存中，果然查询时间变短了。&lt;/p&gt;
 
-&lt;p&gt;这是之前的代码:&lt;/p&gt;
+&lt;p&gt;这是之前的代码:
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JdbcFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Connection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Statement&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inorupdatevalue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;JdbcFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;  &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-           &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-               &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.mysql.jdbc.Driver&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-               &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;jdbc:mysql://database_server:port/database&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-               
-               &lt;span class=&quot;c1&quot;&gt;//get a connection to the database for a user named booksystem&lt;/span&gt;
-               &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DriverManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getConnection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;uid&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;pwd&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-               
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;修改之后:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JdbcFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Connection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Statement&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inorupdatevalue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;JdbcFiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;  &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-           &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-               &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isClosed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()){&lt;/span&gt;
-               &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.mysql.jdbc.Driver&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-               &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;jdbc:mysql://database_server:port/database&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-               
-               &lt;span class=&quot;c1&quot;&gt;//get a connection to the database for a user named booksystem&lt;/span&gt;
-               &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DriverManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getConnection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;uid&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;pwd&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-               &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-
+&lt;p&gt;修改之后:
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -131,114 +106,26 @@
 		<id>http://elilien.com/blog/2012/configure-my-ruby-development-environment/</id>
 		<content type="html">&lt;p&gt;全新安装了 OS X Mountain Lion，这次在配置 Ruby 的时候发现跟 Mac OS X Lion 的步骤不一样了，在此做一个记录。&lt;/p&gt;
 
-&lt;p&gt;首先老方法安装 RVM&lt;/p&gt;
+&lt;p&gt;首先老方法安装 RVM
+Liquid error: No such file or directory - posix_spawnp
+或者
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl -L get.rvm.io | bash -s stable
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;重新打开 Terminal
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
+&lt;p&gt;接下来配置 Ruby，用原来的方法
+Liquid error: No such file or directory - posix_spawnp
+会有以下提示
+Liquid error: No such file or directory - posix_spawnp
+根据提示，首先安装 homebrew
+Liquid error: No such file or directory - posix_spawnp
+然后执行以下安装
+Liquid error: No such file or directory - posix_spawnp
+由于万恶的校园网，libksba 老是找不到 host，果断跳过。&lt;/p&gt;
 
-&lt;p&gt;或者&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;重新打开 Terminal&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which rvm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;接下来配置 Ruby，用原来的方法&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm install 1.9.3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;会有以下提示&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;For JRuby:  Install the JDK. See http://developer.apple.com/java/download/  &lt;span class=&quot;c&quot;&gt;# Current Java version &amp;quot;1.6.0_26&amp;quot;  &lt;/span&gt;
-For IronRuby: Install Mono &amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 2.6  
-For Ruby 1.9.3: Install libksba &lt;span class=&quot;c&quot;&gt;# If using Homebrew, &amp;#39;brew install libksba&amp;#39;&lt;/span&gt;
-  
-To use an RVM installed Ruby as default, instead of the system ruby:  
-  
-    rvm install 1.8.7 &lt;span class=&quot;c&quot;&gt;# installs patch 357: closest supported version  &lt;/span&gt;
-    rvm system ; rvm gemset &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;system.gems ; rvm 1.8.7 ; rvm gemset import system.gems &lt;span class=&quot;c&quot;&gt;# migrate your gems  &lt;/span&gt;
-    rvm &lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;create default 1.8.7  
-  
-And reopen your terminal windows.  
-  
-Xcode and gcc:  
-  
-Right now Ruby requires gcc to compile, but Xcode 4.2 and later no longer ship with gcc. Instead they ship with llvm-gcc &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;to which gcc is a symlink&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and clang, neither of which are supported &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;building Ruby. Xcode 4.1 was the last version to ship gcc, which was /usr/bin/gcc-4.2.  
-  
-Xcode 4.1 and earlier:   
-- Ruby will build fine.  
-  
-Xcode 4.2 and later &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;including Command Line Tools &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Xcode&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:  
-- If you have gcc-4.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;and friends&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; from an earlier Xcode version, Ruby will build fine.
-- If you don&lt;span class=&quot;se&quot;&gt;\’&lt;/span&gt;t have gcc-4.2, you have two options to get it:  
- * Install apple-gcc42 from Homebrew
- * Install osx-gcc-installer
-  
-  Homebrew:  
-  
-  If you are using Homebrew, you can install the apple-gcc42 and required libraries from homebrew/dupes:  
-      brew update  
-      brew tap homebrew/dupes  
-      brew install autoconf automake apple-gcc42
-      rvm pkg install openssl  
-  
-  This can live side by side with an existing Xcode 4.2+ install or Command Line Tools &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Xcode.  
-  
-  osx-gcc-installer:  
-  
-  If you don&lt;span class=&quot;se&quot;&gt;\’&lt;/span&gt;t use Homebrew, you can download and install osx-gcc-installer: https://github.com/kennethreitz/osx-gcc-installer.  
-  
-  Warning: Installing osx-gcc-installer on top of a recent Xcode is known to cause problems, so you must uninstall Xcode before installing osx-gcc-installer. Afterwards you may install Xcode 4.2+ or Command Line Tools &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Xcode &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;you desire.  
-  
-  ** NOTE: Currently, Node.js is having issues building with osx-gcc-installer. The only fix is to install Xcode over osx-gcc-installer.  
-  
-Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;根据提示，首先安装 homebrew&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -fsSkL raw.github.com/mxcl/homebrew/go&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;然后执行以下安装&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install libksba
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew update
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew tap homebrew/dupes
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install autoconf automake apple-gcc42
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm pkg install openssl
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;由于万恶的校园网，libksba 老是找不到 host，果断跳过。&lt;/p&gt;
-
-&lt;p&gt;现在，就可以正常用 RVM 安装 Ruby 了&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm install 1.9.3
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm use 1.9.3
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm --default 1.9.3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-
+&lt;p&gt;现在，就可以正常用 RVM 安装 Ruby 了
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -305,27 +192,10 @@ Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;s
 
 &lt;h3&gt;用法&lt;/h3&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;rot13&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;A-Za-z&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;N-ZA-Mn-za-m&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;span class=&quot;c1&quot;&gt;#使用: print &amp;#39;&amp;lt;a href=&amp;quot;mailto:elilien@me.com&amp;quot;&amp;gt;elilien@me.com&amp;lt;/a&amp;gt;&amp;#39;.rot13&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;用这个办法可以在网页中正常显示自己的 e-mail 并有效防止垃圾邮件：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;n uers=\&amp;quot;znvygb:ryvyvra\100zr\056pbz\&amp;quot; bapyvpx=\&amp;quot;_tnd\056chfu([&amp;#39;_genpxRirag&amp;#39;, &amp;#39;yvaxGb&amp;#39;, &amp;#39;rznvy&amp;#39;, guvf\056uers]);\&amp;quot;&amp;gt;ryvyvra\100zr\056pbz&amp;lt;\057n&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/[a-zA-Z]/g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fromCharCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Z&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;122&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;charCodeAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);}));&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-
+&lt;p&gt;用这个办法可以在网页中正常显示自己的 e-mail 并有效防止垃圾邮件：
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -519,30 +389,16 @@ Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;s
 
 &lt;p&gt;在我朝很多大学的校园网都是 IP 地址与 MAC 地址绑定的，路由器从外面收到发给子网的包时，直接用其事先存储的 ARP 表查出对应 MAC 地址而以这个 MAC 地址为目的 MAC 地址在子网内发包 , 这样没有注册的网卡就收不到外面来的包.  但这种方法有缺陷，就是对发出的包不检查，即使网卡 MAC 是未登记的， 也可以向外发数据包，而且可以用伪造的 IP， 当然有的路由器检查源 IP 的范围， 这时候伪造的 IP 也必须属于子网内的 IP。从根本上说，采用 IP-MAC 来防止 IP 盗用是不行的，所有的网卡 MAC 都可以修改，而且重点是网卡发出的包的源 MAC 地址并不是网卡本身写上去的， 而是应用程序提供的，只是在通常的实现中，应用程序先从网卡上得到了 MAC 地址，每次发送包的时候用这个 MAC 地址作为源 MAC 地址而已，所以我们仅仅靠修改网络的驱动程序就可以改变 MAC 地址。由于种种原因，像我，需要经常更换本本的工作地点，修改 MAC 地址就成了家常便饭，下面利用如上原理，说说修改的办法。&lt;/p&gt;
 
-&lt;p&gt;首先在 Terminal 中查看当前网卡信息：&lt;/p&gt;
+&lt;p&gt;首先在 Terminal 中查看当前网卡信息：    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ifconfig
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：
+Liquid error: No such file or directory - posix_spawnp
+&lt;em&gt;aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。&lt;/em&gt;&lt;/p&gt;
 
-
-&lt;p&gt;其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo ifconfig en0 ether aa:bb:cc:dd:ee:ff
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ifconfig en0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：
+Liquid error: No such file or directory - posix_spawnp
+&lt;em&gt;注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。&lt;/em&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -555,90 +411,27 @@ Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;s
 
 &lt;h3&gt;左移位运算符 (&amp;lt;&amp;lt;)&lt;/h3&gt;
 
-&lt;p&gt;左移位运算符是将运算符左边的对象向左移动运算符右边所指定的位数，并在低位补0。即向左移了 n 位，相当于乘以2的 n 次幂。例如：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LeftBitwiseShiftOperator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    * @param args&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    */&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// TODO Auto-generated method stub&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;result = &amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;运行结果：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;以二进制表示十进制的2为 00000010，向左移动2位，就变成了 00001000，即十进制的8。也就相当于 2 * 2&lt;sup&gt;2&lt;/sup&gt; = 8。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;左移位运算符是将运算符左边的对象向左移动运算符右边所指定的位数，并在低位补0。即向左移了 n 位，相当于乘以2的 n 次幂。例如：    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp
+运行结果：
+Liquid error: No such file or directory - posix_spawnp
+&lt;em&gt;以二进制表示十进制的2为 00000010，向左移动2位，就变成了 00001000，即十进制的8。也就相当于 2 * 2&lt;sup&gt;2&lt;/sup&gt; = 8。&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3&gt;右移位运算符 (&amp;gt;&amp;gt;&amp;gt;)&lt;/h3&gt;
 
-&lt;p&gt;右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，并在高位补0。即向右移了 n 位，相当于乘以2的 -n 次幂。例如：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RightBitwiseShiftOperator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    * @param args&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    */&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// TODO Auto-generated method stub&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;result = &amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;运行结果：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;以二进制表示十进制的8为 00001000，向右移动2位，就变成了 00000010，即十进制的2。也就相当于 8 *  2&lt;sup&gt;(-2)&lt;/sup&gt; = 2。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，并在高位补0。即向右移了 n 位，相当于乘以2的 -n 次幂。例如：    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp
+运行结果：    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp
+&lt;em&gt;以二进制表示十进制的8为 00001000，向右移动2位，就变成了 00000010，即十进制的2。也就相当于 8 *  2&lt;sup&gt;(-2)&lt;/sup&gt; = 2。&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3&gt;带符号的右移位运算符 (&amp;gt;&amp;gt;)&lt;/h3&gt;
 
-&lt;p&gt;带符号的右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，若左边的对象为正数，则在其高位补0，若左边的对象为负数，则在其高位补1。例如：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RightBitwiseShiftOperatorWithSymbol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    * @param args&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    */&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// TODO Auto-generated method stub&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;result1 = &amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;result2 = &amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;运行结果：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;result1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;result2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;x 的值为8，转换成二进制为 00001000，右移两位并在高位补0为 00000010，即是2。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;带符号的右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，若左边的对象为正数，则在其高位补0，若左边的对象为负数，则在其高位补1。例如：    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp
+运行结果：
+Liquid error: No such file or directory - posix_spawnp
+&lt;em&gt;x 的值为8，转换成二进制为 00001000，右移两位并在高位补0为 00000010，即是2。&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;y 的值为-8，转换成二进制为 11110111，右移两位并在高位补1为 11111101，即是-2。&lt;/em&gt;&lt;/p&gt;
 </content>
@@ -660,83 +453,26 @@ Press &lt;span class=&quot;s1&quot;&gt;&amp;#39;q&amp;#39;&lt;/span&gt; to &lt;s
 &lt;p&gt;在 Terminal 中&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;备份需要修改的内核文件&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;开启 TRIM 支持&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo perl -pi -e &lt;span class=&quot;s1&quot;&gt;&amp;#39;s|(x52x6Fx74x61x74x69x6Fx6Ex61x6Cx00).{9}(x00x51)|$1x00x00x00x00x00x00x00x00x00$2|sg&amp;#39;&lt;/span&gt; /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;清空系统内核扩展缓存 (kernel extension cache)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo kextcache -system-prelinked-kernel
-sudo kextcache -system-caches
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;ul&gt;
-&lt;li&gt;重启系统，Enjoy!&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;备份需要修改的内核文件
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开启 TRIM 支持
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;清空系统内核扩展缓存 (kernel extension cache)
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;重启系统，Enjoy!&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;hr /&gt;
 
-&lt;p&gt;关闭 TRIM 使用以下命令&lt;/p&gt;
+&lt;p&gt;关闭 TRIM 使用以下命令    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp
+若遇到严重错误恢复备份    &lt;br/&gt;
+Liquid error: No such file or directory - posix_spawnp
+该原理仅是用 &quot;0&quot; 替换 &quot;IOAHCIBlockStorage&quot; 文件中的 &quot;APPLE SSD&quot; 字符串，以绕过 Apple 通过字符串检测是否为自己认证 SSD 之验证。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo perl -pi -e &lt;span class=&quot;s1&quot;&gt;&amp;#39;s|(x52x6Fx74x61x74x69x6Fx6Ex61x6Cx00).{9}(x00x51)|$1x41x50x50x4Cx45x20x53x53x44$2|sg&amp;#39;&lt;/span&gt; /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-sudo kextcache -system-prelinked-kernel
-sudo kextcache -system-caches
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;若遇到严重错误恢复备份&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;该原理仅是用 &quot;0&quot; 替换 &quot;IOAHCIBlockStorage&quot; 文件中的 &quot;APPLE SSD&quot; 字符串，以绕过 Apple 通过字符串检测是否为自己认证 SSD 之验证。&lt;/p&gt;
-
-&lt;p&gt;当在 &quot;System Report&quot; 中看到如下内容 (&lt;strong&gt;TRIM Support: YES&lt;/strong&gt;) 时，Macbook Pro 已经开启了对第三方 SSD 的 TRIM 支持。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text&quot;&gt;INTEL SSDSA2M160G2GN:
-    
-  Capacity: 160.04 GB (160,041,885,696 bytes)
-  Model:    INTEL SSDSA2M160G2GN                    
-  Revision: 2CV102HD
-  Serial Number:    CVPO045100J6160AGN  
-  Native Command Queuing:   Yes
-  Queue Depth:  32
-  Removable Media:  No
-  Detachable Drive: No
-  BSD Name: disk0
-  Medium Type:  Solid State
-  TRIM Support: Yes
-  Partition Map Type:   GPT (GUID Partition Table)
-  S.M.A.R.T. status:    Verified
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-
+&lt;p&gt;当在 &quot;System Report&quot; 中看到如下内容 (&lt;strong&gt;TRIM Support: YES&lt;/strong&gt;) 时，Macbook Pro 已经开启了对第三方 SSD 的 TRIM 支持。
+Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 </content>
 	</entry>
 	

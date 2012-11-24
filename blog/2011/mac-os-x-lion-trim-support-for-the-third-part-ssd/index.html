@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121018002602" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121018002602" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121018002602" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121018002602" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121018002602" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -79,83 +79,26 @@
 <p>在 Terminal 中</p>
 
 <ul>
-<li>备份需要修改的内核文件</li>
-</ul>
-
-
-<div class="highlight"><pre><code class="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original
-</code></pre>
-</div>
-
-
-<ul>
-<li>开启 TRIM 支持</li>
-</ul>
-
-
-<div class="highlight"><pre><code class="bash">sudo perl -pi -e <span class="s1">&#39;s|(x52x6Fx74x61x74x69x6Fx6Ex61x6Cx00).{9}(x00x51)|$1x00x00x00x00x00x00x00x00x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</code></pre>
-</div>
-
-
-<ul>
-<li>清空系统内核扩展缓存 (kernel extension cache)</li>
-</ul>
-
-
-<div class="highlight"><pre><code class="bash">sudo kextcache -system-prelinked-kernel
-sudo kextcache -system-caches
-</code></pre>
-</div>
-
-
-<ul>
-<li>重启系统，Enjoy!</li>
+<li><p>备份需要修改的内核文件
+Liquid error: No such file or directory - posix_spawnp</p></li>
+<li><p>开启 TRIM 支持
+Liquid error: No such file or directory - posix_spawnp</p></li>
+<li><p>清空系统内核扩展缓存 (kernel extension cache)
+Liquid error: No such file or directory - posix_spawnp</p></li>
+<li><p>重启系统，Enjoy!</p></li>
 </ul>
 
 
 <hr />
 
-<p>关闭 TRIM 使用以下命令</p>
+<p>关闭 TRIM 使用以下命令    <br/>
+Liquid error: No such file or directory - posix_spawnp
+若遇到严重错误恢复备份    <br/>
+Liquid error: No such file or directory - posix_spawnp
+该原理仅是用 "0" 替换 "IOAHCIBlockStorage" 文件中的 "APPLE SSD" 字符串，以绕过 Apple 通过字符串检测是否为自己认证 SSD 之验证。</p>
 
-<div class="highlight"><pre><code class="bash">sudo perl -pi -e <span class="s1">&#39;s|(x52x6Fx74x61x74x69x6Fx6Ex61x6Cx00).{9}(x00x51)|$1x41x50x50x4Cx45x20x53x53x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-sudo kextcache -system-prelinked-kernel
-sudo kextcache -system-caches
-</code></pre>
-</div>
-
-
-<p>若遇到严重错误恢复备份</p>
-
-<div class="highlight"><pre><code class="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</code></pre>
-</div>
-
-
-<p>该原理仅是用 "0" 替换 "IOAHCIBlockStorage" 文件中的 "APPLE SSD" 字符串，以绕过 Apple 通过字符串检测是否为自己认证 SSD 之验证。</p>
-
-<p>当在 "System Report" 中看到如下内容 (<strong>TRIM Support: YES</strong>) 时，Macbook Pro 已经开启了对第三方 SSD 的 TRIM 支持。</p>
-
-<div class="highlight"><pre><code class="text">INTEL SSDSA2M160G2GN:
-    
-  Capacity: 160.04 GB (160,041,885,696 bytes)
-  Model:    INTEL SSDSA2M160G2GN                    
-  Revision: 2CV102HD
-  Serial Number:    CVPO045100J6160AGN  
-  Native Command Queuing:   Yes
-  Queue Depth:  32
-  Removable Media:  No
-  Detachable Drive: No
-  BSD Name: disk0
-  Medium Type:  Solid State
-  TRIM Support: Yes
-  Partition Map Type:   GPT (GUID Partition Table)
-  S.M.A.R.T. status:    Verified
-</code></pre>
-</div>
-
-
-
+<p>当在 "System Report" 中看到如下内容 (<strong>TRIM Support: YES</strong>) 时，Macbook Pro 已经开启了对第三方 SSD 的 TRIM 支持。
+Liquid error: No such file or directory - posix_spawnp</p>
 
 			</div>
 			
@@ -200,6 +143,9 @@ sudo kextcache -system-caches
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>25 Nov</dt>
+				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
+			
 				<dt>10 Oct</dt>
 				<dd><a href="/blog/2012/configure-tomcat-on-os-x/" class="title">在OS X下配置Tomcat</a></dd>
 			
@@ -220,9 +166,6 @@ sudo kextcache -system-caches
 			
 				<dt>28 Aug</dt>
 				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
-			
-				<dt>06 Aug</dt>
-				<dd><a href="/blog/2012/goagent-on-gae-remastered/" class="title">在GAE上部署GoAgent</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

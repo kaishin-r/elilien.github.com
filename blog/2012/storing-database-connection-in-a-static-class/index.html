@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121018002602" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121018002602" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121018002602" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121018002602" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121018002602" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -70,56 +70,11 @@
 			<div class="post-content">
 				<p>这两天在写一个 Java 的程序 (Java + MySQL)，单用户登录，需要多次查询数据库，编译运行的时候发现每次需要查询数据库的时候都要等待3秒左右的时间，虽然是学校的服务器，但是校园网也不至于那么慢啊。开始以为是获取 MySQL 存储过程返回的 ResultSet 转换导致变慢的，但是我这儿数据也不多啊，之后换过数据库驱动也不济于事，最后发现每一次查询请求都会重新登录一遍数据库，用 <code>System.out.print();</code> 测试了一下，果然是卡在登录那一步了，遂把程序跟数据库的连接写成静态的存在内存中，果然查询时间变短了。</p>
 
-<p>这是之前的代码:</p>
+<p>这是之前的代码:
+Liquid error: No such file or directory - posix_spawnp</p>
 
-<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JdbcFiles</span> <span class="o">{</span>
-    <span class="n">Connection</span> <span class="n">conn</span><span class="o">;</span>
-    <span class="n">Statement</span> <span class="n">stmt</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">inorupdatevalue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    
-    <span class="kd">public</span> <span class="nf">JdbcFiles</span><span class="o">()</span>  <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
-
-           <span class="k">try</span><span class="o">{</span>
-               <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
-               <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://database_server:port/database&quot;</span><span class="o">;</span>
-               
-               <span class="c1">//get a connection to the database for a user named booksystem</span>
-               <span class="n">conn</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="s">&quot;uid&quot;</span><span class="o">,</span> <span class="s">&quot;pwd&quot;</span><span class="o">);</span>
-               
-        <span class="o">...</span>
-
-        <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-
-<p>修改之后:</p>
-
-<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JdbcFiles</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="n">Statement</span> <span class="n">stmt</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">inorupdatevalue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    
-    <span class="kd">public</span> <span class="nf">JdbcFiles</span><span class="o">()</span>  <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
-
-           <span class="k">try</span><span class="o">{</span>
-               <span class="k">if</span><span class="o">(</span><span class="n">conn</span><span class="o">==</span><span class="kc">null</span><span class="o">||</span><span class="n">conn</span><span class="o">.</span><span class="na">isClosed</span><span class="o">()){</span>
-               <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
-               <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://database_server:port/database&quot;</span><span class="o">;</span>
-               
-               <span class="c1">//get a connection to the database for a user named booksystem</span>
-               <span class="n">conn</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="s">&quot;uid&quot;</span><span class="o">,</span> <span class="s">&quot;pwd&quot;</span><span class="o">);</span>
-               <span class="o">}</span>
-        <span class="o">...</span>
-
-        <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-
-
+<p>修改之后:
+Liquid error: No such file or directory - posix_spawnp</p>
 
 			</div>
 			
@@ -164,6 +119,9 @@
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>25 Nov</dt>
+				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
+			
 				<dt>10 Oct</dt>
 				<dd><a href="/blog/2012/configure-tomcat-on-os-x/" class="title">在OS X下配置Tomcat</a></dd>
 			
@@ -184,9 +142,6 @@
 			
 				<dt>28 Aug</dt>
 				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
-			
-				<dt>06 Aug</dt>
-				<dd><a href="/blog/2012/goagent-on-gae-remastered/" class="title">在GAE上部署GoAgent</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>
