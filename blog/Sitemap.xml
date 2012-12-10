@@ -2,123 +2,130 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>http://elilien.com/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1</priority>
    </url>
    <url>
       <loc>http://elilien.com/index.html</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
     <url>
       <loc>http://elilien.com/errors/404/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>http://elilien.com/robots.txt</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://elilien.com/blog/2012/mysql-encoding/</loc>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/i-lives-good/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/configure-tomcat-on-os-x/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/storing-database-connection-in-a-static-class/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/configure-my-ruby-development-environment/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/use-google-calendar-to-remind-your-curriculum-via-sms/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/leaving-for-dalian/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/rot13-encryption-method/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/flickr-pro-account/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/goagent-on-gae-remastered/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/special-use-of-terminal/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/hello-world-hello-jekyll/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/change-mac-address-in-mac-os-x/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2012/bitwise-shift-operators-in-java/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 
    <url>
       <loc>http://elilien.com/blog/2011/mac-os-x-lion-trim-support-for-the-third-part-ssd/</loc>
-      <lastmod>2012-11-25</lastmod>
+      <lastmod>2012-12-10</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>

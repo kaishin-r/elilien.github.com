@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121210234503" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -55,6 +55,138 @@
 	
 	<div class="post-world">
 		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>17</i><b>Sep</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/configure-my-ruby-development-environment/">Configure My Ruby Development Environment</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/ruby/" rel="tag"><i class="hash">#</i>ruby</a>, <a href="/blog/tag/development/" rel="tag"><i class="hash">#</i>development</a>, <a href="/blog/tag/environment/" rel="tag"><i class="hash">#</i>environment</a>, <a href="/blog/tag/os x/" rel="tag"><i class="hash">#</i>os x</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>全新安装了 OS X Mountain Lion，这次在配置 Ruby 的时候发现跟 Mac OS X Lion 的步骤不一样了，在此做一个记录。</p>
+
+<p>首先老方法安装 RVM</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>curl -L get.rvm.io | bash -s stable
+</code></pre>
+</div>
+
+
+<p>或者</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="o">)</span>
+</code></pre>
+</div>
+
+
+<p>重新打开 Terminal</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>which rvm
+</code></pre>
+</div>
+
+
+<p>接下来配置 Ruby，用原来的方法</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rvm install 1.9.3
+</code></pre>
+</div>
+
+
+<p>会有以下提示</p>
+
+<div class="highlight"><pre><code class="bash">For JRuby:  Install the JDK. See http://developer.apple.com/java/download/  <span class="c"># Current Java version &quot;1.6.0_26&quot;  </span>
+For IronRuby: Install Mono &gt;<span class="o">=</span> 2.6  
+For Ruby 1.9.3: Install libksba <span class="c"># If using Homebrew, &#39;brew install libksba&#39;</span>
+  
+To use an RVM installed Ruby as default, instead of the system ruby:  
+  
+    rvm install 1.8.7 <span class="c"># installs patch 357: closest supported version  </span>
+    rvm system ; rvm gemset <span class="nb">export </span>system.gems ; rvm 1.8.7 ; rvm gemset import system.gems <span class="c"># migrate your gems  </span>
+    rvm <span class="nb">alias </span>create default 1.8.7  
+  
+And reopen your terminal windows.  
+  
+Xcode and gcc:  
+  
+Right now Ruby requires gcc to compile, but Xcode 4.2 and later no longer ship with gcc. Instead they ship with llvm-gcc <span class="o">(</span>to which gcc is a symlink<span class="o">)</span> and clang, neither of which are supported <span class="k">for </span>building Ruby. Xcode 4.1 was the last version to ship gcc, which was /usr/bin/gcc-4.2.  
+  
+Xcode 4.1 and earlier:   
+- Ruby will build fine.  
+  
+Xcode 4.2 and later <span class="o">(</span>including Command Line Tools <span class="k">for </span>Xcode<span class="o">)</span>:  
+- If you have gcc-4.2 <span class="o">(</span>and friends<span class="o">)</span> from an earlier Xcode version, Ruby will build fine.
+- If you don<span class="se">\’</span>t have gcc-4.2, you have two options to get it:  
+ * Install apple-gcc42 from Homebrew
+ * Install osx-gcc-installer
+  
+  Homebrew:  
+  
+  If you are using Homebrew, you can install the apple-gcc42 and required libraries from homebrew/dupes:  
+      brew update  
+      brew tap homebrew/dupes  
+      brew install autoconf automake apple-gcc42
+      rvm pkg install openssl  
+  
+  This can live side by side with an existing Xcode 4.2+ install or Command Line Tools <span class="k">for </span>Xcode.  
+  
+  osx-gcc-installer:  
+  
+  If you don<span class="se">\’</span>t use Homebrew, you can download and install osx-gcc-installer: https://github.com/kennethreitz/osx-gcc-installer.  
+  
+  Warning: Installing osx-gcc-installer on top of a recent Xcode is known to cause problems, so you must uninstall Xcode before installing osx-gcc-installer. Afterwards you may install Xcode 4.2+ or Command Line Tools <span class="k">for </span>Xcode <span class="k">if </span>you desire.  
+  
+  ** NOTE: Currently, Node.js is having issues building with osx-gcc-installer. The only fix is to install Xcode over osx-gcc-installer.  
+  
+Press <span class="s1">&#39;q&#39;</span> to <span class="k">continue</span>.
+</code></pre>
+</div>
+
+
+<p>根据提示，首先安装 homebrew</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>ruby &lt;<span class="o">(</span>curl -fsSkL raw.github.com/mxcl/homebrew/go<span class="o">)</span>
+</code></pre>
+</div>
+
+
+<p>然后执行以下安装</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>brew install libksba
+<span class="nv">$ </span>brew update
+<span class="nv">$ </span>brew tap homebrew/dupes
+<span class="nv">$ </span>brew install autoconf automake apple-gcc42
+<span class="nv">$ </span>rvm pkg install openssl
+</code></pre>
+</div>
+
+
+<p>由于万恶的校园网，libksba 老是找不到 host，果断跳过。</p>
+
+<p>现在，就可以正常用 RVM 安装 Ruby 了</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rvm install 1.9.3
+<span class="nv">$ </span>rvm use 1.9.3
+<span class="nv">$ </span>rvm --default 1.9.3
+</code></pre>
+</div>
+
+
+
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/configure-my-ruby-development-environment//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	<div class="post-item">
 	<div class="post-meta">
 	    <p class="date"><i>16</i><b>Sep</b></p>
@@ -155,48 +287,32 @@
 
 <h3>用法</h3>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">String</span>
+    <span class="k">def</span> <span class="nf">rot13</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">tr</span> <span class="s2">&quot;A-Za-z&quot;</span><span class="p">,</span> <span class="s2">&quot;N-ZA-Mn-za-m&quot;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-<p>用这个办法可以在网页中正常显示自己的 e-mail 并有效防止垃圾邮件：
-Liquid error: No such file or directory - posix_spawnp</p>
+<span class="c1">#使用: print &#39;&lt;a href=&quot;mailto:elilien@me.com&quot;&gt;elilien@me.com&lt;/a&gt;&#39;.rot13</span>
+</code></pre>
+</div>
+
+
+<p>用这个办法可以在网页中正常显示自己的 e-mail 并有效防止垃圾邮件：</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span>
+<span class="s2">&quot;&lt;n uers=\&quot;znvygb:ryvyvra\100zr\056pbz\&quot; bapyvpx=\&quot;_tnd\056chfu([&#39;_genpxRirag&#39;, &#39;yvaxGb&#39;, &#39;rznvy&#39;, guvf\056uers]);\&quot;&gt;ryvyvra\100zr\056pbz&lt;\057n&gt;&quot;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[a-zA-Z]/g</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="k">return</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">((</span><span class="nx">c</span><span class="o">&lt;=</span><span class="s2">&quot;Z&quot;</span><span class="o">?</span><span class="mi">90</span><span class="o">:</span><span class="mi">122</span><span class="p">)</span><span class="o">&gt;=</span><span class="p">(</span><span class="nx">c</span><span class="o">=</span><span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">13</span><span class="p">)</span><span class="o">?</span><span class="nx">c</span><span class="o">:</span><span class="nx">c</span><span class="o">-</span><span class="mi">26</span><span class="p">);}));</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+
+
 
 	</div>
 	
 	<p class="post-comment-link">
 		<a href="/blog/2012/rot13-encryption-method//#disqus_thread">Comments</a>
-	</p>
-</div>
-
-	<div class="post-item">
-	<div class="post-meta">
-	    <p class="date"><i>28</i><b>Aug</b></p>
-	</div>
-
-	<h1 class="post-title">
-		<a href="/blog/2012/flickr-pro-account/">买了个Flickr Pro</a>
-		<div class="post-title-sub">
-			by Eli Lien – tags:
-			 <a href="/blog/tag/flickr/" rel="tag"><i class="hash">#</i>flickr</a>, <a href="/blog/tag/photos/" rel="tag"><i class="hash">#</i>photos</a>
-		</div>
-	</h1>
-
-	<div class="post-content">
-		<p>前一天晚上在整理着最近的照片时，鬼使神差就想到了 Flickr 这个神一般的服务，于是乎在用着免费帐户的情况下各种上传照片，挂了一个晚上，第二天早上起来看电脑，发现 Photostream 里面只保留了最新200张照片，我知道，这一次，我真心淡腾了。</p>
-
-<p>昨儿晚上刚回到家就跟抽风似的买了个 Flickr Pro Update，也许是受那个200张的诟病，不管了，今晚继续通宵上传，嗯，我就是个淡腾的主还不允许自己淡腾。</p>
-
-<div align="center"><a href="http://www.flickr.com/photos/eli-lien/7874663036/" title="Screen Shot 2012-08-28 at 2.23.38 AM by im.elilien, on Flickr"><img src="http://farm8.staticflickr.com/7277/7874663036_46af52707d_z.jpg" width="640" height="381" alt="Screen Shot 2012-08-28 at 2.23.38 AM"></a></div>
-
-
-<br>
-
-
-<p>Welcome! <a href="http://www.flickr.com/photos/eli-lien/">http://www.flickr.com/photos/eli-lien/</a></p>
-
-	</div>
-	
-	<p class="post-comment-link">
-		<a href="/blog/2012/flickr-pro-account//#disqus_thread">Comments</a>
 	</p>
 </div>
 
@@ -237,6 +353,9 @@ Liquid error: No such file or directory - posix_spawnp</p>
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>10 Dec</dt>
+				<dd><a href="/blog/2012/mysql-encoding/" class="title">MySQL编码设置</a></dd>
+			
 				<dt>25 Nov</dt>
 				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
 			
@@ -257,9 +376,6 @@ Liquid error: No such file or directory - posix_spawnp</p>
 			
 				<dt>31 Aug</dt>
 				<dd><a href="/blog/2012/rot13-encryption-method/" class="title">ROT13加密算法</a></dd>
-			
-				<dt>28 Aug</dt>
-				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

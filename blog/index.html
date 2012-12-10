@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121210234503" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -55,6 +55,61 @@
 	
 	<div class="post-world">
 		
+	<div class="post-item">
+	<div class="post-meta">
+	    <p class="date"><i>10</i><b>Dec</b></p>
+	</div>
+
+	<h1 class="post-title">
+		<a href="/blog/2012/mysql-encoding/">MySQL编码设置</a>
+		<div class="post-title-sub">
+			by Eli Lien – tags:
+			 <a href="/blog/tag/database/" rel="tag"><i class="hash">#</i>database</a>, <a href="/blog/tag/mysql/" rel="tag"><i class="hash">#</i>mysql</a>
+		</div>
+	</h1>
+
+	<div class="post-content">
+		<p>最近在 eclipse 中写一个 Java 项目用到了 MySQL 数据库，嫌麻烦就装了一个 xampp 来顶用，程序写好了发现查询不到任何结果，折腾了半天也没发现程序有问题。为了图方便，在程序测试的时候往表中插入了几个英文字符，结果却奇迹般地查询到了，突然想到是不是因为 MySQL 字符编码集的关系影响到程序查寻不到中文结果，遂写了一个测试代码输出一下数据表，果然出来的都是乱码。</p>
+
+<p>上网搜索发现在 xampp 环境下，或者是 Fedora Linux 使用 yum 安装的 mysqld 特别容易出问题，新增数据库或表格时如果不指定编码，则 MySQL 预设会使用 latin1，现在需要将预设编码改为 utf-8，用如下方法解决：</p>
+
+<p>我的是 OS X 环境，用编辑器打开 <code>/XAMPP/xamppfiles/etc/my.cnf</code></p>
+
+<p>在 <code>[client]</code> 区块下添加如下记录:</p>
+
+<div class="highlight"><pre><code class="bash">default-character-set <span class="o">=</span> utf8
+</code></pre>
+</div>
+
+
+<p>在 <code>[mysqld]</code> 区块下添加如下两行记录:</p>
+
+<div class="highlight"><pre><code class="bash">character-set-server <span class="o">=</span> utf8
+collation-server <span class="o">=</span> utf8_general_ci
+</code></pre>
+</div>
+
+
+<p>保存后重启 MySQL 就能解决问题。</p>
+
+<p>Linux 下 xampp 的 my.cnf 文件所在目录为:
+<code>/opt/lampp/etc/my.cnf</code></p>
+
+<p>如果是 yum 安装的 mysqld，则为:
+<code>/etc/my.cnf</code></p>
+
+<p>Windows 下 xampp 配置文件目录为:
+<code>C:\xampp\mysql\bin\my.ini</code></p>
+
+<p>修改方法均与 OS X 版本相同。</p>
+
+	</div>
+	
+	<p class="post-comment-link">
+		<a href="/blog/2012/mysql-encoding//#disqus_thread">Comments</a>
+	</p>
+</div>
+
 	<div class="post-item">
 	<div class="post-meta">
 	    <p class="date"><i>25</i><b>Nov</b></p>
@@ -171,60 +226,61 @@
 	<div class="post-content">
 		<p>这两天在写一个 Java 的程序 (Java + MySQL)，单用户登录，需要多次查询数据库，编译运行的时候发现每次需要查询数据库的时候都要等待3秒左右的时间，虽然是学校的服务器，但是校园网也不至于那么慢啊。开始以为是获取 MySQL 存储过程返回的 ResultSet 转换导致变慢的，但是我这儿数据也不多啊，之后换过数据库驱动也不济于事，最后发现每一次查询请求都会重新登录一遍数据库，用 <code>System.out.print();</code> 测试了一下，果然是卡在登录那一步了，遂把程序跟数据库的连接写成静态的存在内存中，果然查询时间变短了。</p>
 
-<p>这是之前的代码:
-Liquid error: No such file or directory - posix_spawnp</p>
+<p>这是之前的代码:</p>
 
-<p>修改之后:
-Liquid error: No such file or directory - posix_spawnp</p>
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JdbcFiles</span> <span class="o">{</span>
+    <span class="n">Connection</span> <span class="n">conn</span><span class="o">;</span>
+    <span class="n">Statement</span> <span class="n">stmt</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">inorupdatevalue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">JdbcFiles</span><span class="o">()</span>  <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+
+           <span class="k">try</span><span class="o">{</span>
+               <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
+               <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://database_server:port/database&quot;</span><span class="o">;</span>
+               
+               <span class="c1">//get a connection to the database for a user named booksystem</span>
+               <span class="n">conn</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="s">&quot;uid&quot;</span><span class="o">,</span> <span class="s">&quot;pwd&quot;</span><span class="o">);</span>
+               
+        <span class="o">...</span>
+
+        <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>修改之后:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JdbcFiles</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">Statement</span> <span class="n">stmt</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">inorupdatevalue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">JdbcFiles</span><span class="o">()</span>  <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+
+           <span class="k">try</span><span class="o">{</span>
+               <span class="k">if</span><span class="o">(</span><span class="n">conn</span><span class="o">==</span><span class="kc">null</span><span class="o">||</span><span class="n">conn</span><span class="o">.</span><span class="na">isClosed</span><span class="o">()){</span>
+               <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
+               <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://database_server:port/database&quot;</span><span class="o">;</span>
+               
+               <span class="c1">//get a connection to the database for a user named booksystem</span>
+               <span class="n">conn</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="s">&quot;uid&quot;</span><span class="o">,</span> <span class="s">&quot;pwd&quot;</span><span class="o">);</span>
+               <span class="o">}</span>
+        <span class="o">...</span>
+
+        <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+
 
 	</div>
 	
 	<p class="post-comment-link">
 		<a href="/blog/2012/storing-database-connection-in-a-static-class//#disqus_thread">Comments</a>
-	</p>
-</div>
-
-	<div class="post-item">
-	<div class="post-meta">
-	    <p class="date"><i>17</i><b>Sep</b></p>
-	</div>
-
-	<h1 class="post-title">
-		<a href="/blog/2012/configure-my-ruby-development-environment/">Configure My Ruby Development Environment</a>
-		<div class="post-title-sub">
-			by Eli Lien – tags:
-			 <a href="/blog/tag/ruby/" rel="tag"><i class="hash">#</i>ruby</a>, <a href="/blog/tag/development/" rel="tag"><i class="hash">#</i>development</a>, <a href="/blog/tag/environment/" rel="tag"><i class="hash">#</i>environment</a>, <a href="/blog/tag/os x/" rel="tag"><i class="hash">#</i>os x</a>
-		</div>
-	</h1>
-
-	<div class="post-content">
-		<p>全新安装了 OS X Mountain Lion，这次在配置 Ruby 的时候发现跟 Mac OS X Lion 的步骤不一样了，在此做一个记录。</p>
-
-<p>首先老方法安装 RVM
-Liquid error: No such file or directory - posix_spawnp
-或者
-Liquid error: No such file or directory - posix_spawnp</p>
-
-<p>重新打开 Terminal
-Liquid error: No such file or directory - posix_spawnp</p>
-
-<p>接下来配置 Ruby，用原来的方法
-Liquid error: No such file or directory - posix_spawnp
-会有以下提示
-Liquid error: No such file or directory - posix_spawnp
-根据提示，首先安装 homebrew
-Liquid error: No such file or directory - posix_spawnp
-然后执行以下安装
-Liquid error: No such file or directory - posix_spawnp
-由于万恶的校园网，libksba 老是找不到 host，果断跳过。</p>
-
-<p>现在，就可以正常用 RVM 安装 Ruby 了
-Liquid error: No such file or directory - posix_spawnp</p>
-
-	</div>
-	
-	<p class="post-comment-link">
-		<a href="/blog/2012/configure-my-ruby-development-environment//#disqus_thread">Comments</a>
 	</p>
 </div>
 
@@ -265,6 +321,9 @@ Liquid error: No such file or directory - posix_spawnp</p>
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>10 Dec</dt>
+				<dd><a href="/blog/2012/mysql-encoding/" class="title">MySQL编码设置</a></dd>
+			
 				<dt>25 Nov</dt>
 				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
 			
@@ -285,9 +344,6 @@ Liquid error: No such file or directory - posix_spawnp</p>
 			
 				<dt>31 Aug</dt>
 				<dd><a href="/blog/2012/rot13-encryption-method/" class="title">ROT13加密算法</a></dd>
-			
-				<dt>28 Aug</dt>
-				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

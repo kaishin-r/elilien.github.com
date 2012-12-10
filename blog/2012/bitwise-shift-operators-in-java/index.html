@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121210234503" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -72,27 +72,90 @@
 
 <h3>左移位运算符 (&lt;&lt;)</h3>
 
-<p>左移位运算符是将运算符左边的对象向左移动运算符右边所指定的位数，并在低位补0。即向左移了 n 位，相当于乘以2的 n 次幂。例如：    <br/>
-Liquid error: No such file or directory - posix_spawnp
-运行结果：
-Liquid error: No such file or directory - posix_spawnp
-<em>以二进制表示十进制的2为 00000010，向左移动2位，就变成了 00001000，即十进制的8。也就相当于 2 * 2<sup>2</sup> = 8。</em></p>
+<p>左移位运算符是将运算符左边的对象向左移动运算符右边所指定的位数，并在低位补0。即向左移了 n 位，相当于乘以2的 n 次幂。例如：</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LeftBitwiseShiftOperator</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * @param args</span>
+<span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result = &quot;</span><span class="o">+(</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>运行结果：</p>
+
+<div class="highlight"><pre><code class="java"><span class="n">result</span> <span class="o">=</span> <span class="mi">8</span>
+</code></pre>
+</div>
+
+
+<p><em>以二进制表示十进制的2为 00000010，向左移动2位，就变成了 00001000，即十进制的8。也就相当于 2 * 2<sup>2</sup> = 8。</em></p>
 
 <h3>右移位运算符 (&gt;&gt;&gt;)</h3>
 
-<p>右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，并在高位补0。即向右移了 n 位，相当于乘以2的 -n 次幂。例如：    <br/>
-Liquid error: No such file or directory - posix_spawnp
-运行结果：    <br/>
-Liquid error: No such file or directory - posix_spawnp
-<em>以二进制表示十进制的8为 00001000，向右移动2位，就变成了 00000010，即十进制的2。也就相当于 8 *  2<sup>(-2)</sup> = 2。</em></p>
+<p>右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，并在高位补0。即向右移了 n 位，相当于乘以2的 -n 次幂。例如：</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightBitwiseShiftOperator</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * @param args</span>
+<span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result = &quot;</span><span class="o">+(</span><span class="n">m</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>运行结果：</p>
+
+<div class="highlight"><pre><code class="java"><span class="n">result</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre>
+</div>
+
+
+<p><em>以二进制表示十进制的8为 00001000，向右移动2位，就变成了 00000010，即十进制的2。也就相当于 8 *  2<sup>(-2)</sup> = 2。</em></p>
 
 <h3>带符号的右移位运算符 (&gt;&gt;)</h3>
 
-<p>带符号的右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，若左边的对象为正数，则在其高位补0，若左边的对象为负数，则在其高位补1。例如：    <br/>
-Liquid error: No such file or directory - posix_spawnp
-运行结果：
-Liquid error: No such file or directory - posix_spawnp
-<em>x 的值为8，转换成二进制为 00001000，右移两位并在高位补0为 00000010，即是2。</em></p>
+<p>带符号的右移位运算符是将运算符左边的对象向右移动运算符右边所指定的位数，若左边的对象为正数，则在其高位补0，若左边的对象为负数，则在其高位补1。例如：</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightBitwiseShiftOperatorWithSymbol</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * @param args</span>
+<span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result1 = &quot;</span><span class="o">+(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;result2 = &quot;</span><span class="o">+(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+
+<p>运行结果：</p>
+
+<div class="highlight"><pre><code class="java"><span class="n">result1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+</code></pre>
+</div>
+
+
+<p><em>x 的值为8，转换成二进制为 00001000，右移两位并在高位补0为 00000010，即是2。</em></p>
 
 <p><em>y 的值为-8，转换成二进制为 11110111，右移两位并在高位补1为 11111101，即是-2。</em></p>
 
@@ -139,6 +202,9 @@ Liquid error: No such file or directory - posix_spawnp
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>10 Dec</dt>
+				<dd><a href="/blog/2012/mysql-encoding/" class="title">MySQL编码设置</a></dd>
+			
 				<dt>25 Nov</dt>
 				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
 			
@@ -159,9 +225,6 @@ Liquid error: No such file or directory - posix_spawnp
 			
 				<dt>31 Aug</dt>
 				<dd><a href="/blog/2012/rot13-encryption-method/" class="title">ROT13加密算法</a></dd>
-			
-				<dt>28 Aug</dt>
-				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>

@@ -13,13 +13,13 @@
 	<meta name="keywords" content="elilien, Eli, Lien, Mac, OS X, Jekyll, GitHub" />
 	<link href="http://elilien.com/atom.xml" rel="alternate" title="elilien / blog" type="application/atom+xml" />
 	
-	<link rel="stylesheet" href="/stylesheets/master.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121125005130" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/master.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="/stylesheets/webkit-scrollbar.css?20121210234503" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="/resources/fancybox/fancybox.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
-	<script src="/javascripts/libs.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/main.js?20121125005130" type="text/javascript" charset="utf-8"></script>
-	<script src="/javascripts/webkit-scrollbar.js?20121125005130" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/libs.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/main.js?20121210234503" type="text/javascript" charset="utf-8"></script>
+	<script src="/javascripts/webkit-scrollbar.js?20121210234503" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
 
@@ -72,16 +72,30 @@
 
 <p>在我朝很多大学的校园网都是 IP 地址与 MAC 地址绑定的，路由器从外面收到发给子网的包时，直接用其事先存储的 ARP 表查出对应 MAC 地址而以这个 MAC 地址为目的 MAC 地址在子网内发包 , 这样没有注册的网卡就收不到外面来的包.  但这种方法有缺陷，就是对发出的包不检查，即使网卡 MAC 是未登记的， 也可以向外发数据包，而且可以用伪造的 IP， 当然有的路由器检查源 IP 的范围， 这时候伪造的 IP 也必须属于子网内的 IP。从根本上说，采用 IP-MAC 来防止 IP 盗用是不行的，所有的网卡 MAC 都可以修改，而且重点是网卡发出的包的源 MAC 地址并不是网卡本身写上去的， 而是应用程序提供的，只是在通常的实现中，应用程序先从网卡上得到了 MAC 地址，每次发送包的时候用这个 MAC 地址作为源 MAC 地址而已，所以我们仅仅靠修改网络的驱动程序就可以改变 MAC 地址。由于种种原因，像我，需要经常更换本本的工作地点，修改 MAC 地址就成了家常便饭，下面利用如上原理，说说修改的办法。</p>
 
-<p>首先在 Terminal 中查看当前网卡信息：    <br/>
-Liquid error: No such file or directory - posix_spawnp</p>
+<p>首先在 Terminal 中查看当前网卡信息：</p>
 
-<p>其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：
-Liquid error: No such file or directory - posix_spawnp
-<em>aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。</em></p>
+<div class="highlight"><pre><code class="bash">ifconfig
+</code></pre>
+</div>
 
-<p>过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：
-Liquid error: No such file or directory - posix_spawnp
-<em>注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。</em></p>
+
+<p>其中 en0 代表的是以太网卡，en1 为无线网卡，跟在 ether 后面的即为该网卡的 MAC 地址。修改该网卡 (en0) MAC 地址：</p>
+
+<div class="highlight"><pre><code class="bash">sudo ifconfig en0 ether aa:bb:cc:dd:ee:ff
+</code></pre>
+</div>
+
+
+<p><em>aa:bb:cc:dd:ee:ff 即为需要修改为的 MAC 地址，注意 MAC 地址的格式。</em></p>
+
+<p>过程中提示需要输入密码时输入当前登录用户密码回车即可。修改好后查看修改后的网卡 MAC 地址等信息：</p>
+
+<div class="highlight"><pre><code class="bash">ifconfig en0
+</code></pre>
+</div>
+
+
+<p><em>注：用该方法修改 MAC 地址重启后将自动恢复为原 MAC 地址。</em></p>
 
 			</div>
 			
@@ -126,6 +140,9 @@ Liquid error: No such file or directory - posix_spawnp
 		<h2>Recent Articles</h2>
 		<dl class="labels">
 			
+				<dt>10 Dec</dt>
+				<dd><a href="/blog/2012/mysql-encoding/" class="title">MySQL编码设置</a></dd>
+			
 				<dt>25 Nov</dt>
 				<dd><a href="/blog/2012/i-lives-good/" class="title">我过得很好</a></dd>
 			
@@ -146,9 +163,6 @@ Liquid error: No such file or directory - posix_spawnp
 			
 				<dt>31 Aug</dt>
 				<dd><a href="/blog/2012/rot13-encryption-method/" class="title">ROT13加密算法</a></dd>
-			
-				<dt>28 Aug</dt>
-				<dd><a href="/blog/2012/flickr-pro-account/" class="title">买了个Flickr Pro</a></dd>
 			
 			<dt>&nbsp;</dt>
 			<dd><a href="/blog/archive/">See All &rarr;</a></dd>
